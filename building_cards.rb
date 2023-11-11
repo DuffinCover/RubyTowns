@@ -5,11 +5,9 @@ class BuildingCards
     {
       name: 'Cottage',
       point_value: 3,
-      pattern: [%w[x Y x]
-                %w[R U x]
-                %w[x x x]],
-        score_condition: "fed"
-        fed: false
+      pattern: [%w[x Y x],%w[R U x],%w[x x x]],
+      score_condition: "fed",
+      fed: false
     }
   end
 end

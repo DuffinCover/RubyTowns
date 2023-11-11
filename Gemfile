@@ -2,4 +2,5 @@
 
 source 'https://rubygems.org'
 
-require 'rubocop'
+gem 'rubocop'
+gem 'pry', '~> 0.14.2'
