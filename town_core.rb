@@ -9,14 +9,18 @@ class TownCore
     attr_accessor :town_grid, :built_buildings, :buildings_list, :resources
 
     def show_grid
-        puts "----------------"
+        puts "  | 1 | 2 | 3 | 4 |"
+        puts "-------------------"
+        row_num = 1
         @town_grid.each do |row|
-            line = "| "
+        
+            line = "#{row_num} | "
             row.each do |square|
                 line += square + " | "
             end
+            row_num = row_num +1
             puts line
-            puts "----------------"
+            puts "-------------------"
         end
         puts "\n"
     end
@@ -26,14 +30,14 @@ class TownCore
     end
 
     def place(resource, location)
-        @town_grid[location[:row]][location[:col]] = resource
+        @town_grid[location[:row].to_i][location[:col].to_i] = resource
         show_grid
     end
 
     def location_coords(x, y)
         {
-            row: y, 
-            col: x
+            row: y.to_i-1, 
+            col: x.to_i-1
         }
     end
 

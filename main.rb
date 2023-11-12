@@ -3,4 +3,6 @@ require_relative 'building_cards'
 require 'pry'
 
 town = TownCore.new
-binding.pry
+while true do
+    locale = gets.chomp
+end

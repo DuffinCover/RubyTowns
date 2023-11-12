@@ -10,6 +10,8 @@ GEM
     parser (3.2.2.4)
       ast (~> 2.4.1)
       racc
+    pastel (0.8.0)
+      tty-color (~> 0.5)
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -31,8 +33,18 @@ GEM
     rubocop-ast (1.30.0)
       parser (>= 3.2.1.0)
     ruby-progressbar (1.13.0)
-    ruby2d (0.12.1)
+    tty-color (0.6.0)
+    tty-cursor (0.7.1)
+    tty-prompt (0.23.1)
+      pastel (~> 0.8)
+      tty-reader (~> 0.8)
+    tty-reader (0.9.0)
+      tty-cursor (~> 0.7)
+      tty-screen (~> 0.8)
+      wisper (~> 2.0)
+    tty-screen (0.8.1)
     unicode-display_width (2.5.0)
+    wisper (2.0.1)
 
 PLATFORMS
   ruby
@@ -41,7 +53,7 @@ PLATFORMS
 DEPENDENCIES
   pry (~> 0.14.2)
   rubocop
-  ruby2d
+  tty-prompt
 
 BUNDLED WITH
    2.3.10
