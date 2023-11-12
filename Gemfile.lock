@@ -48,8 +48,7 @@ GEM
     wisper (2.0.1)
 
 PLATFORMS
-  ruby
-  x64-mingw32
+  x86_64-darwin-20
 
 DEPENDENCIES
   colorize
@@ -59,4 +58,4 @@ DEPENDENCIES
   tty-prompt
 
 BUNDLED WITH
-   2.3.10
+   2.4.22
