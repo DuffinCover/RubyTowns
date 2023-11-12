@@ -2,25 +2,30 @@
 
 class BuildingCards
   def self.cottage
+    #normal
+    #xYxxRU
+
+    #rotated right 90
+    #RxxxBY
+
+
+    #rotated right 180
+    #URxxYx
+
+    #rotated right 270
+    #YUxxxR
     {
       name: 'Cottage',
       point_value: 3,
-      resources_need: %w[R U Y],
-    #   pattern: [ %w[x Y x]
-    #             ,%w[R U x]
-    #             ,%w[x x x] ],
-      score_condition: "fed",
-      fed: false
+      resources_need: "",
+      patterns: %w[xtxxbg bxxxgt gbxxtx tgxxxb], 
     }
   end
 end
-# "xYxRUxxxx" "YxRU"
+
+#YBxx 
+#xRxx
+#xxxx
+#xxxx  
 
 
-# "xxxxURxYx" 
-
-# "xxxYUxxRx"
-
-# "xxYxRUxxx"
-
-# "RxxUYxxxx"
