@@ -44,7 +44,15 @@ class GameMenu
 
   def build_menu
     @town.show_grid
-    @town.build
+    choices = @town.build
+    prompt = prompt_instance
+    if choices == []
+      prompt.select('nothing to build!') do |menu|
+        menu.choice 'Return to main menu', -> {default_menu}
+      end
+    end
+    selection = prompt.select('You can build:', choices)
+    default_menu
   end
 
   def reset_grid

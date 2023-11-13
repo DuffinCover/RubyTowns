@@ -25,8 +25,7 @@ attr_accessor :size, :grid
         all_locations = []
         @grid.each do |row|
             row.each do |square|            
-                if square.contents[:name] == resource     
-                    binding.pry               
+                if square.contents[:name] == resource                    
                     all_locations << [square.row, square.col]                
                 end
             end
@@ -36,12 +35,16 @@ attr_accessor :size, :grid
 
     def test_build
         place_in_grid(Resources.wheat, {row: 0, col:1})
-        place_in_grid(Resources.brick,{row: 1, col: 0})
+        place_in_grid(Resources.brick, {row:1, col: 0})
         place_in_grid(Resources.glass, {row:1, col:1})
 
-        place_in_grid(Resources.wheat, {row: 0, col:2})
-        place_in_grid(Resources.glass, {row:0, col:3})
-        place_in_grid(Resources.brick,{row: 1, col: 3})
+        place_in_grid(Resources.wheat, {row: 0, col:3})
+        place_in_grid(Resources.brick, {row:1, col: 2})
+        place_in_grid(Resources.glass, {row:1, col:3})
+
+        # place_in_grid(Resources.wheat, {row: 0, col:2})
+        # place_in_grid(Resources.glass, {row:0, col:3})
+        # place_in_grid(Resources.brick, {row: 1, col: 3})
 
         place_in_grid(Resources.wheat, {row: 3, col:2})
         place_in_grid(Resources.glass, {row:2, col:2})
@@ -50,6 +53,24 @@ attr_accessor :size, :grid
         place_in_grid(Resources.wheat, {row: 3, col:1})
         place_in_grid(Resources.glass, {row:3, col:0})
         place_in_grid(Resources.brick,{row: 2, col: 0})
+    end
+
+    def shape_search(town_string, pattern)
+        start = town_string.index(pattern)
+
+        col = start%4
+        row = start/4 +1
+        binding.pry
+        # xttg
+        # bgxb
+        # bxgb
+        # gttx
+
+    end
+
+    def find_building(building)
+        needed_resources = building[:resources_need]
+
     end
 end
 

@@ -49,6 +49,8 @@ GEM
     wisper (2.0.1)
 
 PLATFORMS
+  x64-mingw-ucrt
+  x64-mingw32
   x86_64-darwin-20
 
 DEPENDENCIES
@@ -60,4 +62,4 @@ DEPENDENCIES
   tty-prompt
 
 BUNDLED WITH
-   2.4.22
+   2.3.10

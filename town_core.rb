@@ -40,13 +40,9 @@ class TownCore
   end
 
   def reset_grid
-    @town_grid = [[], [], [], []]
-    @town_grid.each do |row|
-      empty = Resources.empty
-      4.times do
-        row << empty
-      end
-    end
+    @town_grid = Grid.new(4, Resources.empty)
+    @built_buildings = []
+    @buildable = []
   end
 
   def add_building(building_Card)
@@ -67,26 +63,28 @@ class TownCore
 
   def build
     current_town = generate_town_string
-    binding.pry
     @buildings_list.each do |building|
       patterns = building[:patterns]
       patterns.each do |pattern|      
-        binding.pry
-        @buildable << building if current_town.match(Regex.new(pattern))
+        @buildable << building if pattern.match(current_town)
       end
     end
-    binding.pry
-    @buildable.each do |building|
-      locations = locate_resources_for_building(building)      
-    end
+    # @buildable.each do |building|
+    #   locations = locate_resources_for_building(current_town, building)      
+    # end
+    @buildable
   end
 
-  def locate_resources_for_building(building)
+  def locate_resources_for_building(current_town,building)
     resource_locations = {}
+    # building[:patterns].each do |pattern|
+    #     @town_grid.shape_search(current_town, pattern)
+    # end
     building[:resources_need].each do |resource|
       locations = @town_grid.find_resource(resource)
       resource_locations[resource] = locations
     end
+    # binding.pry
     resource_locations
   end
 
