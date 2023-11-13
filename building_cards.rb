@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'regex'
 
 class BuildingCards
   def self.cottage
@@ -17,7 +18,7 @@ class BuildingCards
       name: 'Cottage',
       point_value: 3,
       resources_need: %w[wheat brick glass],
-      patterns: %w[xtxxbg bxxxgt gbxxtx tgxxxb]
+      patterns: ['.[t].{2}[b][g]', '[b].(3)[g][t]', '[g][b].(2)[t].', '[t][g].(3)[b]']
     }
   end
 end

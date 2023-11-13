@@ -24,14 +24,32 @@ attr_accessor :size, :grid
     def find_resource(resource)
         all_locations = []
         @grid.each do |row|
-            row.each do |square|
-                binding.pry
-                if square.contents[:name] == resource
-                    all_locations << square
+            row.each do |square|            
+                if square.contents[:name] == resource     
+                    binding.pry               
+                    all_locations << [square.row, square.col]                
                 end
             end
         end
         all_locations
+    end
+
+    def test_build
+        place_in_grid(Resources.wheat, {row: 0, col:1})
+        place_in_grid(Resources.brick,{row: 1, col: 0})
+        place_in_grid(Resources.glass, {row:1, col:1})
+
+        place_in_grid(Resources.wheat, {row: 0, col:2})
+        place_in_grid(Resources.glass, {row:0, col:3})
+        place_in_grid(Resources.brick,{row: 1, col: 3})
+
+        place_in_grid(Resources.wheat, {row: 3, col:2})
+        place_in_grid(Resources.glass, {row:2, col:2})
+        place_in_grid(Resources.brick,{row: 2, col: 3})
+
+        place_in_grid(Resources.wheat, {row: 3, col:1})
+        place_in_grid(Resources.glass, {row:3, col:0})
+        place_in_grid(Resources.brick,{row: 2, col: 0})
     end
 end
 

@@ -1,15 +1,18 @@
 require 'colorize'
 require 'colorized_string'
+require 'regex'
 require_relative 'resources'
 require_relative 'building_cards'
 require_relative 'easy_starting_point'
 require_relative 'grid'
+
 
 class TownCore
   def initialize
     puts String.colors
     # @town_grid = StartingPoint.cottage_build
     @town_grid = Grid.new(4, Resources.empty)
+    @town_grid.test_build
     @built_buildings = []
     @buildable = []
     @buildings_list = [BuildingCards.cottage]
@@ -67,21 +70,24 @@ class TownCore
     binding.pry
     @buildings_list.each do |building|
       patterns = building[:patterns]
-      binding.pry
       patterns.each do |pattern|      
-        @buildable << building if current_town.include?(pattern)
+        binding.pry
+        @buildable << building if current_town.match(Regex.new(pattern))
       end
     end
+    binding.pry
     @buildable.each do |building|
-      locate_resources_for_building(building)
+      locations = locate_resources_for_building(building)      
     end
   end
 
   def locate_resources_for_building(building)
-    binding.pry
+    resource_locations = {}
     building[:resources_need].each do |resource|
-      @town_grid.find_resource(resource)
+      locations = @town_grid.find_resource(resource)
+      resource_locations[resource] = locations
     end
+    resource_locations
   end
 
 
