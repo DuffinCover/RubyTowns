@@ -9,7 +9,6 @@ require_relative 'grid'
 
 class TownCore
   def initialize
-    puts String.colors
     # @town_grid = StartingPoint.cottage_build
     @town_grid = Grid.new(4, Resources.empty)
     @town_grid.test_build
@@ -62,29 +61,40 @@ class TownCore
   end
 
   def build
-    current_town = generate_town_string
+
     @buildings_list.each do |building|
-      patterns = building[:patterns]
-      patterns.each do |pattern|      
-        @buildable << building if pattern.match(current_town)
+      resource_locations = locate_resources_for_building(building)
+      shape_list = building[:shapes]
+      shape_list.each do |location|
+        location.each do |shape|
+          binding.pry
+          starting_resource = shape[:name]
+          starting_resource_locations = resource_locations[starting_resource]
+          binding.pry
+        end
       end
     end
-    # @buildable.each do |building|
-    #   locations = locate_resources_for_building(current_town, building)      
+
+
+    # current_town = generate_town_string
+    # @buildings_list.each do |building|
+    #   patterns = building[:patterns]
+    #   patterns.each do |pattern|
+    #     @buildable << building if pattern.match(current_town)
+    #   end
     # end
-    @buildable
+    # @buildable.each do |building|
+    #   locations = locate_resources_for_building(current_town, building)
+    # end
+    # @buildable
   end
 
-  def locate_resources_for_building(current_town,building)
+  def locate_resources_for_building(building)
     resource_locations = {}
-    # building[:patterns].each do |pattern|
-    #     @town_grid.shape_search(current_town, pattern)
-    # end
     building[:resources_need].each do |resource|
       locations = @town_grid.find_resource(resource)
       resource_locations[resource] = locations
     end
-    # binding.pry
     resource_locations
   end
 

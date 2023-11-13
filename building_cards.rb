@@ -19,43 +19,71 @@ class BuildingCards
       point_value: 3,
       resources_need: %w[brick glass wheat],
       patterns: [%r{.[t].{2}[b][g]}, %r{[b].{3}[g][t]}, %r{[g][b].{2}[t].}, %r{[t][g].{3}[b]}],
-    #   shape: Shape.new('wheat').add_down(Shape.new('glass').add_left(Shape.new('brick')))
+      shapes: {
+        up: Shape.new('brick').add_right(Shape.new('glass').add_up(Shape.new('wheat'))),
+        # ninety: "",
+        # one_eighty: "",
+        # two_seventy: ""
+      }
     }
   end
 end
 
 
+
+
 class Shape
     def initialize(material)
         @name = material
-        @neighbors = 
-        {
-            up: nil,
-            down: nil,
-            left: nil,
-            right: nil
-        }
-     
+        @up= {name: 'up', thing: nil}
+        @down= {name: 'down', thing: nil}
+        @left= {name: 'left', thing: nil}
+        @right= {name: 'right', thing: nil}
     end
 attr_accessor :name, :neighbors
     def add_up(shape)
-        @neighbors[:up] = shape if @neighbors[:up].nil?
-        shape.neighbors[:down] = self if shape.neighbors[:down].nil?
+        @up[:thing] = shape if @up[:thing].nil?
     end
 
     def add_down(shape)
-        @neighbors[:down] = shape if @neighbors[:down].nil?
-        shape.neighbors[:up] = self if shape.neighbors[:up].nil?
+        @down[:thing] = shape if @down[:thing].nil?
     end
 
     def add_left(shape)
-        @neighbors[:left] = shape if @neighbors[:left].nil?
-        shape.neighbors[:right] = self if shape.neighbors[:right].nil?
+        @left[:thing] = shape if @left[:thing].nil?
     end
 
     def  add_right(shape)
-        @neighbors[:right] = shape if@neighbors[:right].nil?
-        shape.neighbors[:left] = self if shape.neighbors[:left].nil?
+        @right[:thing] = shape if @right[:thing].nil?
+    end
+
+    def check_neighbors(thing, init_row, init_col)
+        directions = [@up, @down, @left, @right]
+        directions.each do |direction|
+            if direction[:thing].nil?
+                continue
+                #find the non_nil_path
+            else
+                new_thing_location = next_place(direction[:name], thing)
+            end
+        end
+    end
+
+    def next_place(name, thing)
+        binding.pry
+        case name
+        when 'up'
+            thing[:row] = thing[:row]-1
+        when 'down'
+            thing[:row] = thing[:row]+1
+        when 'left'
+            thing[:col] = thing[:col]-1
+        when 'right'
+            thing[:col] = thing[:col]+1
+        else
+            thing
+        end
+        thing
     end
 
     # def rotate_right
