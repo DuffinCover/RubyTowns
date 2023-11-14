@@ -69,7 +69,7 @@ class GameMenu
       @town.changed_mind
       build_menu
     else
-      place_building(selection)
+      @town.place_building(selection)
       default_menu
     end
   end

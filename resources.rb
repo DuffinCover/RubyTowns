@@ -16,7 +16,7 @@ class Resources
   def self.wood
     {
       name: 'wood',
-      print: Rainbow('Wo').black.bg(:saddlebrown),
+      print: Rainbow('Wo ').black.bg(:saddlebrown),
       piece: 'w'
     }
   end
@@ -24,7 +24,7 @@ class Resources
   def self.wheat
     {
       name: 'wheat',
-      print: Rainbow('Wh').black.bg(:goldenrod),
+      print: Rainbow('Wh ').black.bg(:goldenrod),
       piece: 't'
     }
   end
@@ -32,7 +32,7 @@ class Resources
   def self.brick
     {
       name: 'brick',
-      print: Rainbow('Br').black.bg(:orangered),
+      print: Rainbow('Br ').black.bg(:orangered),
       piece: 'b'
     }
   end
@@ -40,7 +40,7 @@ class Resources
   def self.glass
     {
       name: 'glass',
-      print: Rainbow('Gl').black.bg(:darkturquoise),
+      print: Rainbow('Gl ').black.bg(:darkturquoise),
       piece: 'g'
     }
   end
@@ -48,7 +48,7 @@ class Resources
   def self.stone
     {
       name: 'stone',
-      print: Rainbow('St').black.bg(:darkgray),
+      print: Rainbow('St ').black.bg(:darkgray),
       piece: 's'
     }
   end
@@ -56,7 +56,7 @@ class Resources
   def self.empty
     {
       name: 'empty',
-      print: ColorizedString['  '].colorize('cyan'.to_sym),
+      print: ColorizedString['   '].colorize('cyan'.to_sym),
       piece: 'x'
     }
   end

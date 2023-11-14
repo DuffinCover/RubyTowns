@@ -27,8 +27,8 @@ class TownCore
   def show_grid
     system('clear')
     system('cls')
-    puts '  |  1 |  2 |  3 |  4 |'
-    puts '-----------------------'.colorize(:green)
+    puts '  |  1  |  2  |  3  |  4  |'
+    puts '---------------------------'.colorize(:green)
     row_num = 1
     @town_grid.grid.each do |row|
       line = "#{row_num}" + ' | '.colorize(:green)
@@ -37,7 +37,7 @@ class TownCore
       end
       row_num += 1
       puts line
-      puts '-----------------------'.colorize(:green)
+      puts '---------------------------'.colorize(:green)
     end
     puts "\n"
   end
@@ -150,13 +150,16 @@ end
 
 def place_building(coords)
     row_col = coords.split('')
-    binding.pry
     row = row_col[1].to_i-1
     col = row_col[4].to_i-1
-    choosen_spot = [row, col]
-    if @currently_building.build_spots.include? choosen_spot
+    chosen_spot = [row, col]
+    places_to_build = @currently_building.build_spots
+    if places_to_build.include? chosen_spot
+        places_to_build.delete(chosen_spot)
+        places_to_build.each do |place|
+            @town_grid.reset_square(place[0], place[1])
+        end
     end
-
 end
 
 
