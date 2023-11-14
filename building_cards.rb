@@ -25,7 +25,9 @@ class BuildingCards
       resources_need: %w[brick glass wheat],
     #   patterns: [%r{.[t].{2}[b][g]}, %r{[b].{3}[g][t]}, %r{[g][b].{2}[t].}, %r{[t][g].{3}[b]}],
       shapes: {
-        up: @shapes.normal_cottage
+        up: @shapes.normal_cottage,
+        right: @shapes.cottage_right,
+        chapel: @shapes.definitely_cottage
       }
     }
   end

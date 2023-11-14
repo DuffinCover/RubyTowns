@@ -30,6 +30,27 @@ class BuildingShapes
         gl.add_up(wh)
         br
     end
+
+    def cottage_right
+        br = brick
+        gl = glass
+        wh = wheat
+
+        br.add_down(gl)
+        gl.add_right(wh)
+        br
+    end
+
+    def definitely_cottage
+        br1 = brick
+        br2 = brick
+        gl = glass
+        wh = wheat
+
+        wh.add_down(gl)
+        gl.add_right(br1)
+        gl.add_left(br2)
+    end
 end
 
 class Shape

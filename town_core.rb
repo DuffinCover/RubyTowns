@@ -196,17 +196,3 @@ class Building
     attr_accessor :name, :build_spots, :number
 
 end
-
-
-# OLD BUILD DIRECTION
-    # current_town = generate_town_string
-    # @buildings_list.each do |building|
-    #   patterns = building[:patterns]
-    #   patterns.each do |pattern|
-    #     @buildable << building if pattern.match(current_town)
-    #   end
-    # end
-    # @buildable.each do |building|
-    #   locations = locate_resources_for_building(current_town, building)
-    # end
-    # @buildable
