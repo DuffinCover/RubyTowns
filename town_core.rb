@@ -5,6 +5,8 @@ require_relative 'resources'
 require_relative 'building_cards'
 require_relative 'easy_starting_point'
 require_relative 'grid'
+require_relative 'building_shapes'
+require 'set'
 
 
 class TownCore
@@ -61,33 +63,44 @@ class TownCore
   end
 
   def build
+    find_all_buildable_buildings
+    binding.pry
+  end
 
+  def find_all_buildable_buildings
     @buildings_list.each do |building|
       resource_locations = locate_resources_for_building(building)
       shape_list = building[:shapes]
-      shape_list.each do |location|
-        location.each do |shape|
-          binding.pry
-          starting_resource = shape[:name]
-          starting_resource_locations = resource_locations[starting_resource]
-          binding.pry
+
+      shape_list.each do |direction, thing|  
+        resource_locations[thing.name].each do |start|
+            valid_build = Set.new 
+            check_neighbors(thing, start, resource_locations, valid_build)
+            if valid_build.size == building[:total_pieces]
+                @buildable << Building.new(building[:name], valid_build, building[:abv])
+            end
         end
       end
     end
-
-
-    # current_town = generate_town_string
-    # @buildings_list.each do |building|
-    #   patterns = building[:patterns]
-    #   patterns.each do |pattern|
-    #     @buildable << building if pattern.match(current_town)
-    #   end
-    # end
-    # @buildable.each do |building|
-    #   locations = locate_resources_for_building(current_town, building)
-    # end
-    # @buildable
   end
+
+
+  def check_neighbors(resource, start, coords, valid_build)
+    valid_build << start
+    next_direction = resource.next_directions
+    if next_direction[0].nil?
+        return
+    end
+    next_direction.each do |direction|        
+        next_coord = resource.next_place(direction[:direction], start)
+        if coords[direction[:thing].name].include? next_coord
+            check_neighbors(direction[:thing], next_coord, coords, valid_build)          
+        end
+    end
+    valid_build
+  end
+
+
 
   def locate_resources_for_building(building)
     resource_locations = {}
@@ -110,19 +123,27 @@ class TownCore
   end
 end
 
-# class Building
+class Building
 
-#     def initialize(card)
-#         @name = card[:name]
-#         @pattern = card[:pattern]
-#         @point_value = card[:point_value]
-#         @rules_text = card[:score_condition]
-#     end
+    def initialize(name, build_spot, abv)
+        @name = name
+        @build_spots = build_spot
+        @abv =  abv
+    end
+    attr_accessor :name, :build_spots, :abv
 
-#     attr_accessor :name, :pattern, :point_value, :rules_text
+end
 
-#     def find_pattern;end
 
-#     def score;end
-
-# end
+# OLD BUILD DIRECTION
+    # current_town = generate_town_string
+    # @buildings_list.each do |building|
+    #   patterns = building[:patterns]
+    #   patterns.each do |pattern|
+    #     @buildable << building if pattern.match(current_town)
+    #   end
+    # end
+    # @buildable.each do |building|
+    #   locations = locate_resources_for_building(current_town, building)
+    # end
+    # @buildable
