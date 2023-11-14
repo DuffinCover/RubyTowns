@@ -60,8 +60,15 @@ class GameMenu
     @town.show_grid
     choices << 'go back'
     prompt = prompt_instance
-    select = prompt.select('which space?', choices)
+    selection = prompt.select('which space?', choices)
+    follow_build_choice(selection)
+  end
 
+  def follow_build_choice(selection)
+    if selection == 'go back'
+      @town.changed_mind
+      build_menu
+    end
   end
 
   def reset_grid

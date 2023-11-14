@@ -82,6 +82,7 @@ class TownCore
 
 
   def find_all_buildable_buildings
+    @buildable = []
     total_options = 0
     @buildings_list.each do |building|
       resource_locations = locate_resources_for_building(building)
@@ -142,6 +143,16 @@ class TownCore
             end
             return choices 
         end
+    end
+end
+
+def changed_mind
+    @remove_for_building.each do |square|
+        
+        row = square.row
+        col = square.col
+        @town_grid.reset_square(row, col)
+        @town_grid.grid[row][col] = square
     end
 end
 
