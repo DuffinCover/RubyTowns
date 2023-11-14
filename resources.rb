@@ -66,7 +66,8 @@ class BuidlingColors
 
     def self.all_buildings
         {
-            Cottage: BuidlingColors.cottage
+            Cottage: BuidlingColors.cottage,
+            Chapel: BuidlingColors.chapel
         }
     end
 
@@ -75,6 +76,14 @@ class BuidlingColors
             name: 'Cottage',
             print: Rainbow('Ctg').black.bg(:aquamarine),
             piecs: 'Ctg',
+        }
+    end
+
+    def self.chapel
+        {
+            name: 'Chapel',
+            print: Rainbow('Chp').black.bg(:orange),
+            piecs: 'Chp',
         }
     end
 end

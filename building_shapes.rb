@@ -41,7 +41,7 @@ class BuildingShapes
         br
     end
 
-    def definitely_cottage
+    def chapel
         br1 = brick
         br2 = brick
         gl = glass
@@ -50,6 +50,7 @@ class BuildingShapes
         wh.add_down(gl)
         gl.add_right(br1)
         gl.add_left(br2)
+        wh
     end
 end
 
