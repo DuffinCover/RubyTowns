@@ -19,9 +19,10 @@ class TownCore
     @buildings_list = [BuildingCards.cottage]
     @resources = Resources.all_resources
     @remove_for_building = []
+    @currently_building = nil
   end
 
-  attr_accessor :town_grid, :built_buildings, :buildings_list, :resources, :remove_for_building
+  attr_accessor :town_grid, :built_buildings, :buildings_list, :resources, :currently_building, :remove_for_building
 
   def show_grid
     system('clear')
@@ -132,6 +133,7 @@ class TownCore
     number = selection.split(' ')[1].to_i
     @buildable.each do |build|
         if build.number == number
+            @currently_building = build
             choices = []
             build.build_spots.each do |coord|
                 row = coord[0]
@@ -145,6 +147,18 @@ class TownCore
         end
     end
 end
+
+def place_building(coords)
+    row_col = coords.split('')
+    binding.pry
+    row = row_col[1].to_i-1
+    col = row_col[4].to_i-1
+    choosen_spot = [row, col]
+    if @currently_building.build_spots.include? choosen_spot
+    end
+
+end
+
 
 def changed_mind
     @remove_for_building.each do |square|
