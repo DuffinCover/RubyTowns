@@ -15,6 +15,10 @@ class Grid
     end
 attr_accessor :size, :grid
 
+    def reset_square(row, col)
+        @grid[row][col] = Square.new(row, col, Resources.empty)
+    end
+
     def place_in_grid(thing, location)
         row = location[:row].to_i
         col = location[:col].to_i

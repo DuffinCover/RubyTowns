@@ -61,3 +61,20 @@ class Resources
     }
   end
 end
+
+class BuidlingColors
+
+    def self.all_buildings
+        {
+            Cottage: BuidlingColors.cottage
+        }
+    end
+
+    def self.cottage
+        {
+            name: 'Cottage',
+            print: Rainbow('Ctg').black.bg(:aquamarine),
+            piecs: 'Ctg',
+        }
+    end
+end

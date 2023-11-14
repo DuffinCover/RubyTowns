@@ -52,7 +52,16 @@ class GameMenu
       end
     end
     selection = prompt.select('You can build:', choices)
-    default_menu
+    choosen_building_menu(selection)
+  end
+
+  def choosen_building_menu(selection)
+    choices = @town.highlight_choice(selection)
+    @town.show_grid
+    choices << 'go back'
+    prompt = prompt_instance
+    select = prompt.select('which space?', choices)
+
   end
 
   def reset_grid
