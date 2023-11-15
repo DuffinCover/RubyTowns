@@ -90,6 +90,22 @@ class Shape
         # update the direction via case?
     end
 
+    def rotate_direction(direction, shape)
+        case direction
+        when 'up'
+            # up -> right
+        when 'down'
+            # down -> left
+        when 'left'
+            # left -> up
+        when 'right'
+            # right -> down
+        else
+            puts 'you shouldnt be here'
+        end
+        shape
+    end
+
     
     def next_directions
         non_nil_directions = []
