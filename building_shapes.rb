@@ -83,6 +83,13 @@ class Shape
         @right[:thing] = shape if @right[:thing].nil?
     end
 
+    def rotate(times)
+        temp_shape = self.clone
+        binding.pry
+        # literaly just recurse the same way you follow the shape
+        # update the direction via case?
+    end
+
     
     def next_directions
         non_nil_directions = []
