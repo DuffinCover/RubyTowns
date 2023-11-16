@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'colorize'
 require 'colorized_string'
 require 'regex'
@@ -16,7 +18,8 @@ class TownCore
     @temp_grid = @town_grid.clone
     @built_buildings = []
     @buildable = []
-    @buildings_list = [BuildingCards.cottage, BuildingCards.chapel, BuildingCards.farm, BuildingCards.tavern, BuildingCards.well, BuildingCards.theater, BuildingCards.factory]
+    @buildings_list = [BuildingCards.cottage, BuildingCards.chapel, BuildingCards.farm, BuildingCards.tavern,
+                       BuildingCards.well, BuildingCards.theater, BuildingCards.factory]
     @resources = Resources.all_resources
     @remove_for_building = []
     @currently_building = nil
@@ -31,7 +34,7 @@ class TownCore
     puts '---------------------------'.colorize(:green)
     row_num = 1
     @town_grid.grid.each do |row|
-      line = "#{row_num}" + ' | '.colorize(:green)
+      line = row_num.to_s + ' | '.colorize(:green)
       row.each do |square|
         line += square.contents[:print] + ' | '.colorize(:green)
       end
@@ -88,9 +91,8 @@ class TownCore
     @buildings_list.each do |building|
       resource_locations = locate_resources_for_building(building)
       shape = building[:shapes]
-      if resource_locations[shape.name].nil?
-        next
-      end
+      next if resource_locations[shape.name].nil?
+
       4.times do
         resource_locations[shape.name].each do |start|
           valid_build = Set.new
@@ -101,7 +103,7 @@ class TownCore
             total_options += 1
             @buildable << Building.new(building[:name], valid_build.to_a, total_options)
           end
-        end        
+        end
         shape = shape.rotate
       end
     end
@@ -143,7 +145,7 @@ class TownCore
         @remove_for_building << @town_grid.grid[row][col]
         @town_grid.reset_square(row, col)
         @town_grid.place_in_grid(BuildingCards.all_buildings[build.name.to_sym], { row: row, col: col })
-        choices << "#{[coord[0] + 1, coord[1] + 1]}"
+        choices << [coord[0] + 1, coord[1] + 1].to_s
       end
       return choices
     end
@@ -177,7 +179,6 @@ class TownCore
     col = location[:col]
     @town_grid.reset_square(row, col)
   end
-
 end
 
 class Building

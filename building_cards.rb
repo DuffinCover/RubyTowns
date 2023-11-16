@@ -18,37 +18,37 @@ class BuildingCards
       },
       Factory: {
         Bank: BuildingCards.bank,
-        Factory: BuidlingCards.factory, 
-        Trading_Post: BuidlingCards.trading_post, 
+        Factory: BuidlingCards.factory,
+        Trading_Post: BuidlingCards.trading_post,
         Warehouse: BuildingCards.warehouse
       },
       Farm: {
-        Farm: BuidlingCards.farm, 
-        Granary: BuidlingCards.granary, 
-        Greenhouse: BuidlingCards.greenhouse, 
+        Farm: BuidlingCards.farm,
+        Granary: BuidlingCards.granary,
+        Greenhouse: BuidlingCards.greenhouse,
         Orchard: BuidlingCards.orchard
       },
       Tavern: {
         Almshouse: BuildingCards.almshouse,
-        Feast_Hall: BuidlingCards.feast_hall, 
-        Inn: BuidlingCards.inn, 
+        Feast_Hall: BuidlingCards.feast_hall,
+        Inn: BuidlingCards.inn,
         Tavern: BuidlingCards.tavern
-      }, 
+      },
       Theater: {
         Bakery: BuildingCards.bakery,
-        Market: BuildingCards.market, 
-        Tailer: BuidlingCards.tailor, 
+        Market: BuildingCards.market,
+        Tailer: BuidlingCards.tailor,
         Theater: BuidlingCards.theater
-      }, 
+      },
       Well: {
-        Fountain: BuidlingCards.fountain, 
-        Millstone: BuidlingCards.millstone, 
-        Shed: BuidlingCards.shed, 
+        Fountain: BuidlingCards.fountain,
+        Millstone: BuidlingCards.millstone,
+        Shed: BuidlingCards.shed,
         Well: BuidlingCards.well
       },
-  
-      Cottage: BuildingCards.cottage,
-      
+
+      Cottage: BuildingCards.cottage
+
     }
   end
 
@@ -80,7 +80,6 @@ class BuildingCards
       print: BuildingColors.chapel('Aby')
     }
   end
-
 
   def self.chapel
     {
@@ -212,10 +211,10 @@ class BuildingCards
     {
       type: 'farm',
       name: 'Farm',
-      total_pieces: 4, 
-      point_value: 4, 
+      total_pieces: 4,
+      point_value: 4,
       resources_need: %w[wheat wood],
-      shapes: @shapes.farm, 
+      shapes: @shapes.farm,
       print: BuildingColors.farm('Frm')
     }
   end
@@ -224,10 +223,10 @@ class BuildingCards
     {
       type: 'farm',
       name: 'Granary',
-      total_pieces: 4, 
-      point_value: 4, 
+      total_pieces: 4,
+      point_value: 4,
       resources_need: %w[wheat wood brick],
-      shapes: @shapes.granary, 
+      shapes: @shapes.granary,
       print: BuildingColors.farm('Gny')
     }
   end
@@ -236,10 +235,10 @@ class BuildingCards
     {
       type: 'farm',
       name: 'Greenhouse',
-      total_pieces: 4, 
-      point_value: 4, 
+      total_pieces: 4,
+      point_value: 4,
       resources_need: %w[wheat glass wood wood],
-      shapes: @shapes.greenhouse, 
+      shapes: @shapes.greenhouse,
       print: BuildingColors.farm('Grn')
     }
   end
@@ -248,36 +247,36 @@ class BuildingCards
     {
       type: 'farm',
       name: 'Orchard',
-      total_pieces: 4, 
-      point_value: 4, 
+      total_pieces: 4,
+      point_value: 4,
       resources_need: %w[stone wheat wood],
-      shapes: @shapes.orchard, 
+      shapes: @shapes.orchard,
       print: BuildingColors.farm('Orc')
     }
   end
-  
+
   # -------------------------FACTORY--------------------------
 
   def self.factory
-  {
-    type: 'factory',
-    name: 'Factory',
-    total_pieces: 5, 
-    point_value: 0, 
-    resources_need: %w[wood brick stone], 
-    shapes: @shapes.factory, 
-    print: BuildingColors.factory('Fct')
-  }
+    {
+      type: 'factory',
+      name: 'Factory',
+      total_pieces: 5,
+      point_value: 0,
+      resources_need: %w[wood brick stone],
+      shapes: @shapes.factory,
+      print: BuildingColors.factory('Fct')
+    }
   end
-  
+
   def self.warehouse
     {
       type: 'factory',
       name: 'Warehouse',
-      total_pieces: 5, 
-      point_value: 0, 
-      resources_need: %w[brick wheat wood], 
-      shapes: @shapes.warehouse, 
+      total_pieces: 5,
+      point_value: 0,
+      resources_need: %w[brick wheat wood],
+      shapes: @shapes.warehouse,
       print: BuildingColors.factory('Wrh')
     }
   end
@@ -286,10 +285,10 @@ class BuildingCards
     {
       type: 'factory',
       name: 'Trading Post',
-      total_pieces: 5, 
-      point_value: 0, 
-      resources_need: %w[wood stone brick], 
-      shapes: @shapes.trading_post, 
+      total_pieces: 5,
+      point_value: 0,
+      resources_need: %w[wood stone brick],
+      shapes: @shapes.trading_post,
       print: BuildingColors.factory('Trd')
     }
   end
@@ -298,15 +297,15 @@ class BuildingCards
     {
       type: 'factory',
       name: 'Bank',
-      total_pieces: 5, 
-      point_value: 0, 
-      resources_need: %w[wheat wood glass brick], 
-      shapes: @shapes.bank, 
+      total_pieces: 5,
+      point_value: 0,
+      resources_need: %w[wheat wood glass brick],
+      shapes: @shapes.bank,
       print: BuildingColors.factory('Bnk')
     }
   end
 
-  
+
 
   # -------------------------WELL-----------------------------
 
@@ -314,11 +313,11 @@ class BuildingCards
     {
       type: 'well',
       name: 'Well',
-      total_pieces: 2, 
-      point_value: 2, 
+      total_pieces: 2,
+      point_value: 2,
       resources_need: %w[wood stone],
       shapes: @shapes.well,
-      print: BuildingColors.well('Wel'),
+      print: BuildingColors.well('Wel')
     }
   end
 
@@ -326,11 +325,11 @@ class BuildingCards
     {
       type: 'well',
       name: 'Shed',
-      total_pieces: 2, 
-      point_value: 2, 
+      total_pieces: 2,
+      point_value: 2,
       resources_need: %w[wood stone],
       shapes: @shapes.well,
-      print: BuildingColors.well('Shd'),
+      print: BuildingColors.well('Shd')
     }
   end
 
@@ -338,11 +337,11 @@ class BuildingCards
     {
       type: 'well',
       name: 'Millstone',
-      total_pieces: 2, 
-      point_value: 2, 
+      total_pieces: 2,
+      point_value: 2,
       resources_need: %w[wood stone],
       shapes: @shapes.well,
-      print: BuildingColors.well('Mls'),
+      print: BuildingColors.well('Mls')
     }
   end
 
@@ -350,25 +349,22 @@ class BuildingCards
     {
       type: 'well',
       name: 'Fountain',
-      total_pieces: 2, 
-      point_value: 2, 
+      total_pieces: 2,
+      point_value: 2,
       resources_need: %w[wood stone],
       shapes: @shapes.well,
-      print: BuildingColors.well('Ftn'),
+      print: BuildingColors.well('Ftn')
     }
   end
-
 end
 
 class BuildingColors
-
-
   def self.chapel(abv)
-     Rainbow(abv).black.bg(:orange)
+    Rainbow(abv).black.bg(:orange)
   end
 
   def self.cottage(abv)
-      Rainbow(abv).black.bg(:darkcyan)
+    Rainbow(abv).black.bg(:darkcyan)
   end
 
   def self.farm(abv)

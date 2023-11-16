@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BuildingShapes
   def glass
     Shape.new('glass')
@@ -18,7 +20,7 @@ class BuildingShapes
   def stone
     Shape.new('stone')
   end
-  
+
   #-------------------Church-------------------
 
   def abbey
@@ -73,7 +75,7 @@ class BuildingShapes
   def granary
     assemble_farm([wheat, wheat, brick, wood])
   end
-  
+
   def assemble_farm(mats)
     mats[0].add_right(mats[1])
     mats[1].add_down(mats[2])
@@ -140,6 +142,7 @@ class BuildingShapes
     mats[0].add_right(mats[1])
     mats[0]
   end
+
   #--------------------Factory------------------
   def factory
     wd = wood
@@ -182,8 +185,6 @@ class BuildingShapes
     mats[3].add_down(mats[4])
     mats[0]
   end
-
-
 end
 
 class Shape
@@ -215,7 +216,7 @@ class Shape
 
   def rotate
     temp_shape = clone
-    shape = recursive_rotate(temp_shape)
+    recursive_rotate(temp_shape)
     # literaly just recurse the same way you follow the shape
     # update the direction via case?
   end

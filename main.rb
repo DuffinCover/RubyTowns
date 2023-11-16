@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require_relative 'town_core'
 require_relative 'building_cards'
 require 'pry'
 
-town = TownCore.new
-locale = gets.chomp while true
+TownCore.new
+loop { gets.chomp }

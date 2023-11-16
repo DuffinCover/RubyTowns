@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'resources'
 
 class Grid
@@ -62,9 +64,8 @@ class Grid
     place_in_grid(Resources.brick, { row: 2, col: 0 })
   end
 
-
   def find_building(building)
-    needed_resources = building[:resources_need]
+    building[:resources_need]
   end
 end
 

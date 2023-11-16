@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'tty-prompt'
 require_relative 'town_core'
 require 'pry'
@@ -33,10 +35,10 @@ class GameMenu
     prompt = prompt_instance
     location = prompt.collect do
       key(:row).ask('Row? (1-4)', convert: :int) do |q|
-        q.messages[:convert?] = "Lets not be coy. %{value} isn't a number"
+        q.messages[:convert?] = "Lets not be coy. %<value>s isn't a number"
       end
-      key(:col).ask('Column?(1-4)',convert: :int) do |q|
-        q.messages[:convert?] = "Lets not be coy. %{value} isn't a number"
+      key(:col).ask('Column?(1-4)', convert: :int) do |q|
+        q.messages[:convert?] = "Lets not be coy. %<value>s isn't a number"
       end
     end
     location.each do |key, value|
@@ -49,13 +51,13 @@ class GameMenu
     @town.show_grid
     prompt = prompt_instance
     prompt.select('Choose your action?', cycle: true) do |menu|
-      menu.choice 'debug', -> {show_me_stuff}
+      menu.choice 'debug', -> { show_me_stuff }
       menu.choice 'Place', -> { resource_menu }
       menu.choice 'Build', -> { build_menu }
-      menu.choice 'Undo Last' , -> {undo}
+      menu.choice 'Undo Last', -> { undo }
       menu.choice 'Score', 3
       menu.choice 'Start over', -> { reset_grid }
-      menu.choice 'Exit', -> {leave_game}
+      menu.choice 'Exit', -> { leave_game }
     end
   end
 
@@ -96,9 +98,9 @@ class GameMenu
   def undo
     prompt = prompt_instance
     prompt.select('What do you want to undo?') do |menu|
-      menu.choice 'Undo build', -> {undo_build}
-      menu.choice 'Undo place', -> {undo_place}
-      menu.choice 'Go back', -> {default_menu}
+      menu.choice 'Undo build', -> { undo_build }
+      menu.choice 'Undo place', -> { undo_place }
+      menu.choice 'Go back', -> { default_menu }
     end
   end
 
@@ -119,18 +121,14 @@ class GameMenu
   end
 
   def go_back(choice)
-    if choice == 'go back'
-      default_menu
-    end
+    return unless choice == 'go back'
+
+    default_menu
   end
 
   def keep_in_limits(value)
-    if value < 1
-      value = 1
-    end
-    if value > 4
-      value = 4
-    end
+    value = 1 if value < 1
+    value = 4 if value > 4
     value
   end
 
@@ -149,7 +147,7 @@ class GameMenu
     puts @town.currently_building
     prompt = prompt_instance
     prompt.select('return to menu?') do |menu|
-      menu.choice 'return', -> {default_menu}
+      menu.choice 'return', -> { default_menu }
     end
   end
 end

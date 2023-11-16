@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class StartingPoint
   def self.cottage_build
     [{ name: 'empty', print: "\e[0;36;49m  \e[0m", piece: 'x' },
