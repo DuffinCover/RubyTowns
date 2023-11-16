@@ -11,7 +11,6 @@ require 'set'
 
 class TownCore
   def initialize
-    # @town_grid = StartingPoint.cottage_build
     @town_grid = Grid.new(4, Resources.empty)
     @town_grid.test_build
     @temp_grid = @town_grid.clone
@@ -66,6 +65,7 @@ class TownCore
   end
 
   def build
+    @remove_for_building = []
     choices = []
     find_all_buildable_buildings
     @buildable.each do |building|
@@ -170,15 +170,12 @@ class TownCore
     end
   end
 
-  def generate_town_string
-    town_string = ''
-    @town_grid.grid.each do |row|
-      row.each do |piece|
-        town_string << piece.contents[:piece]
-      end
-    end
-    town_string
+  def remove_from_board(location)
+    row = location[:row]
+    col = location[:col]
+    @town_grid.reset_square(row, col)
   end
+
 end
 
 class Building
