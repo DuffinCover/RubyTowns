@@ -18,65 +18,172 @@ class BuildingShapes
   def stone
     Shape.new('stone')
   end
+  
+  #-------------------Church-------------------
 
   def abbey
-    br = brick
-    st1 = stone
-    st2 = stone
-    gl = glass
-
-    br.add_right(st1)
-    st1.add_right(st2)
-    st2.add_up(gl)
-    br
-  end
-
-  
-  def bakery
-    br1 = brick
-    br2 = brick
-    gl = glass
-    wh = wheat
-
-    wh.add_down(gl)
-    gl.add_right(br1)
-    gl.add_left(br2)
-    wh
+    assemble_church([brick, stone, stone, glass])
   end
 
   def chapel
-    st1 = stone
-    gl1 = glass
-    st2 = stone
-    gl2 = glass
-    st1.add_right(gl1)
-    gl1.add_right(st2)
-    st2.add_up(gl2)
-    st1
+    assemble_church([stone, glass, stone, glass])
   end
 
   def cloister
-    wd = wood
-    br = brick
-    st = stone
-    gl = glass
-
-    wd.add_right(br)
-    br.add_right(st)
-    st.add_up(gl)
-    wd
-
+    assemble_church([wood, brick, stone, glass])
   end
+
+  def temple
+    assemble_church(brick, brick, stone, glass)
+  end
+
+  def assemble_church(mats)
+    mats[0].add_right(mats[1])
+    mats[1].add_right(mats[2])
+    mats[2].add_up(mats[3])
+    mats[0]
+  end
+
+  #-------------------Cottage--------------------
 
   def cottage
-    br = brick
-    gl = glass
-    wh = wheat
-    br.add_right(gl)
-    gl.add_up(wh)
-    br
+    assemble_cottage([brick, glass, wheat])
   end
 
+  def assemble_cottage(mats)
+    mats[0].add_right(mats[1])
+    mats[1].add_up(mats[2])
+    mats[0]
+  end
+
+  #--------------------Farm---------------------
+
+  def farm
+    assemble_farm(wheat, wheat, wood, wood)
+  end
+
+  def orchard
+    assemble_farm([stone, wheat, wood, wheat])
+  end
+
+  def greenhouse
+    assemble_farm([wheat, glass, wood, wood])
+  end
+
+  def granary
+    assemble_farm([wheat, wheat, brick, wood])
+  end
+  
+  def assemble_farm(mats)
+    mats[0].add_right(mats[1])
+    mats[1].add_down(mats[2])
+    mats[2].add_left(mats[3])
+    mats[0]
+  end
+
+
+  #--------------------Theater------------------
+
+  def bakery
+    assemble_theater([wheat, glass, brick, brick])
+  end
+
+  def market
+    assemble_theater([wood, glass, stone, stone])
+  end
+
+  def tailor
+    assemble_theater([wheat, glass, stone, stone])
+  end
+
+  def theater
+    assemble_theater([stone, glass, wood, wood])
+  end
+
+  def assemble_theater(mats)
+    mats[0].add_down(mats[1])
+    mats[1].add_right(mats[2])
+    mats[1].add_left(mats[3])
+    mats[0]
+  end
+
+  #--------------------Tavern-------------------
+
+  def tavern
+    assemble_tavern([brick, brick, glass])
+  end
+
+  def inn
+    assemble_tavern([wheat, stone, glass])
+  end
+
+  def feast_hall
+    assemble_tavern([wood, wood, glass])
+  end
+
+  def almshouse
+    assemble_tavern([stone, stone, glass])
+  end
+
+  def assemble_tavern(mats)
+    mats[0].add_right(mats[1])
+    mats[1].add_right(mats[2])
+    mats[0]
+  end
+
+  #--------------------Well---------------------
+  def well
+    assemble_well([wood, stone])
+  end
+
+  def assemble_well(mats)
+    mats[0].add_right(mats[1])
+    mats[0]
+
+  #--------------------Factory------------------
+  def factory
+    wd = wood
+    br1 = brick
+    st1 = stone
+    st2 = stone
+    br2 = brick
+
+    wd.add_down(br1)
+    br1.add_right(st1)
+    st1.add_right(st2)
+    st2.add_right(br2)
+    wd
+  end
+
+  def bank
+    assemble_utah_shape(brick, glass, wood, wheat, wheat)
+  end
+
+  def trading_post
+    assemble_utah_shape(brick, wood, stone, stone, wood)
+  end
+
+  def assemble_utah_shape(mats)
+    mats[0].add_left(mats[1])
+    mats[1].add_left(mats[2])
+    mats[2].add_up(mats[3])
+    mats[3].add_right(mats[4])
+    mats[0]
+  end
+
+  def warehouse
+    assemble_u_shape(brick, wheat, wood, wheat, brick)
+  end
+
+  def assemble_u_shape(mats)
+    mats[0].add_up(mats[1])
+    mats[1].add_right(mats[2])
+    mats[2].add_right(mats[3])
+    mats[3].add_down(mats[4])
+    mats[0]
+  end
+
+ 
 end
 
 class Shape
