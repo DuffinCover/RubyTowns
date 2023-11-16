@@ -55,7 +55,7 @@ class GameMenu
       menu.choice 'Place', -> { resource_menu }
       menu.choice 'Build', -> { build_menu }
       menu.choice 'Undo Last', -> { undo }
-      menu.choice 'Score', 3
+      menu.choice 'Score', -> { score }
       menu.choice 'Start over', -> { reset_grid }
       menu.choice 'Exit', -> { leave_game }
     end
@@ -115,6 +115,11 @@ class GameMenu
     default_menu
   end
 
+  def score
+    @town.town_grid
+    binding.pry
+  end
+
   def reset_grid
     @town.reset_grid
     default_menu
@@ -143,8 +148,14 @@ class GameMenu
 
     puts
 
-    puts 'Built'
+    puts 'Building'
     puts @town.currently_building
+
+    puts
+
+    puts 'Grid'
+    puts @town.town_grid.grid
+
     prompt = prompt_instance
     prompt.select('return to menu?') do |menu|
       menu.choice 'return', -> { default_menu }

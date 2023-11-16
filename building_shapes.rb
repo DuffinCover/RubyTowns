@@ -36,7 +36,7 @@ class BuildingShapes
   end
 
   def temple
-    assemble_church(brick, brick, stone, glass)
+    assemble_church([brick, brick, stone, glass])
   end
 
   def assemble_church(mats)
@@ -159,11 +159,11 @@ class BuildingShapes
   end
 
   def bank
-    assemble_utah_shape(brick, glass, wood, wheat, wheat)
+    assemble_utah_shape([brick, glass, wood, wheat, wheat])
   end
 
   def trading_post
-    assemble_utah_shape(brick, wood, stone, stone, wood)
+    assemble_utah_shape([brick, wood, stone, stone, wood])
   end
 
   def assemble_utah_shape(mats)
@@ -175,7 +175,7 @@ class BuildingShapes
   end
 
   def warehouse
-    assemble_u_shape(brick, wheat, wood, wheat, brick)
+    assemble_u_shape([brick, wheat, wood, wheat, brick])
   end
 
   def assemble_u_shape(mats)
@@ -212,6 +212,14 @@ class Shape
 
   def add_right(shape)
     @right[:thing] = shape if @right[:thing].nil?
+  end
+
+  def rotate_n_times(n)
+    temp_shape = clone
+    n.times do
+      temp_shape = rotate
+    end
+    temp_shape
   end
 
   def rotate

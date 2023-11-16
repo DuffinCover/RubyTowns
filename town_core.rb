@@ -158,7 +158,7 @@ class TownCore
     chosen_spot = [row, col]
     places_to_build = @currently_building.build_spots
     return unless places_to_build.include? chosen_spot
-
+    @built_buildings << [@currently_building.name, [chosen_spot]]
     places_to_build.delete(chosen_spot)
     places_to_build.each do |place|
       @town_grid.reset_square(place[0], place[1])
@@ -166,6 +166,7 @@ class TownCore
   end
 
   def changed_mind
+    @built_buildings.delete(@built_buildings[-1])
     @remove_for_building.each do |square|
       row = square.row
       col = square.col

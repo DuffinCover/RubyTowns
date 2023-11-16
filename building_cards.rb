@@ -9,42 +9,71 @@ class BuildingCards
   @shapes = BuildingShapes.new
   def self.all_buildings
     {
+      Abbey: BuildingCards.abbey,
+      Chapel: BuildingCards.chapel,
+      Chloister: BuildingCards.cloister,
+      Temple: BuildingCards.temple,
+      Bank: BuildingCards.bank,
+      Factory: BuildingCards.factory,
+      Trading_Post: BuildingCards.trading_post,
+      Warehouse: BuildingCards.warehouse,
+      Farm: BuildingCards.farm,
+      Granary: BuildingCards.granary,
+      Greenhouse: BuildingCards.greenhouse,
+      Orchard: BuildingCards.orchard,
+      Almshouse: BuildingCards.almshouse,
+      Feast_Hall: BuildingCards.feast_hall,
+      Inn: BuildingCards.inn,
+      Tavern: BuildingCards.tavern,
+      Bakery: BuildingCards.bakery,
+      Market: BuildingCards.market,
+      Tailer: BuildingCards.tailor,
+      Theater: BuildingCards.theater,
+      Fountain: BuildingCards.fountain,
+      Millstone: BuildingCards.millstone,
+      Shed: BuildingCards.shed,
+      Well: BuildingCards.well,
+      Cottage: BuildingCards.cottage
+    }
+  end
+  def self.all_buildings_by_cat
+    {
       Church: {
         Abbey: BuildingCards.abbey,
         Chapel: BuildingCards.chapel,
-        Chloister: BuildingCards.chloister,
+        Chloister: BuildingCards.cloister,
         Temple: BuildingCards.temple
 
       },
       Factory: {
         Bank: BuildingCards.bank,
-        Factory: BuidlingCards.factory,
-        Trading_Post: BuidlingCards.trading_post,
+        Factory: BuildingCards.factory,
+        Trading_Post: BuildingCards.trading_post,
         Warehouse: BuildingCards.warehouse
       },
       Farm: {
-        Farm: BuidlingCards.farm,
-        Granary: BuidlingCards.granary,
-        Greenhouse: BuidlingCards.greenhouse,
-        Orchard: BuidlingCards.orchard
+        Farm: BuildingCards.farm,
+        Granary: BuildingCards.granary,
+        Greenhouse: BuildingCards.greenhouse,
+        Orchard: BuildingCards.orchard
       },
       Tavern: {
         Almshouse: BuildingCards.almshouse,
-        Feast_Hall: BuidlingCards.feast_hall,
-        Inn: BuidlingCards.inn,
-        Tavern: BuidlingCards.tavern
+        Feast_Hall: BuildingCards.feast_hall,
+        Inn: BuildingCards.inn,
+        Tavern: BuildingCards.tavern
       },
       Theater: {
         Bakery: BuildingCards.bakery,
         Market: BuildingCards.market,
-        Tailer: BuidlingCards.tailor,
-        Theater: BuidlingCards.theater
+        Tailer: BuildingCards.tailor,
+        Theater: BuildingCards.theater
       },
       Well: {
-        Fountain: BuidlingCards.fountain,
-        Millstone: BuidlingCards.millstone,
-        Shed: BuidlingCards.shed,
-        Well: BuidlingCards.well
+        Fountain: BuildingCards.fountain,
+        Millstone: BuildingCards.millstone,
+        Shed: BuildingCards.shed,
+        Well: BuildingCards.well
       },
 
       Cottage: BuildingCards.cottage
@@ -56,14 +85,15 @@ class BuildingCards
 
   def self.cottage
     {
-      type: 'cottage',
+      type: 'Cottage',
       name: 'Cottage',
       abv: 'Ctg',
       total_pieces: 3,
       point_value: 3,
       resources_need: %w[brick glass wheat],
       shapes: @shapes.cottage,
-      print: BuildingColors.cottage('Ctg')
+      print: BuildingColors.cottage('Ctg'),
+      scoring: false # needs to be fed, might as well make it a bool
     }
   end
 
@@ -71,7 +101,7 @@ class BuildingCards
 
   def self.abbey
     {
-      type: 'church',
+      type: 'Church',
       name: 'Abbey',
       total_pieces: 4,
       point_value: 4,
@@ -83,7 +113,7 @@ class BuildingCards
 
   def self.chapel
     {
-      type: 'church',
+      type: 'Church',
       name: 'Chapel',
       total_pieces: 4,
       point_value: 4,
@@ -95,13 +125,25 @@ class BuildingCards
 
   def self.cloister
     {
-      type: 'church',
+      type: 'Church',
       name: 'Cloister',
       total_pieces: 4,
       point_value: 4,
       resources_need: %w[wood brick stone glass],
-      shapes: @shapes.chapel,
+      shapes: @shapes.cloister,
       print: BuildingColors.chapel('Clo')
+    }
+  end
+
+  def self.temple
+    {
+      type: 'Church',
+      name: 'Temple',
+      total_pieces: 4,
+      point_value: 4,
+      resources_need: %w[brick stone glass],
+      shapes: @shapes.temple,
+      print: BuildingColors.chapel('Tmp')
     }
   end
 
@@ -109,7 +151,7 @@ class BuildingCards
 
   def self.almshouse
     {
-      type: 'tavern',
+      type: 'Tavern',
       name: 'Almshouse',
       total_pieces: 3,
       point_value: 4,
@@ -121,7 +163,7 @@ class BuildingCards
 
   def self.feast_hall
     {
-      type: 'tavern',
+      type: 'Tavern',
       name: 'Feast Hall',
       total_pieces: 3,
       point_value: 4,
@@ -133,7 +175,7 @@ class BuildingCards
 
   def self.inn
     {
-      type: 'tavern',
+      type: 'Tavern',
       name: 'Inn',
       total_pieces: 3,
       point_value: 4,
@@ -145,7 +187,7 @@ class BuildingCards
 
   def self.tavern
     {
-      type: 'tavern',
+      type: 'Tavern',
       name: 'Tavern',
       total_pieces: 3,
       point_value: 4,
@@ -159,7 +201,7 @@ class BuildingCards
 
   def self.bakery
     {
-      type: 'theater',
+      type: 'Theater',
       name: 'Bakery',
       total_pieces: 4,
       point_value: 4,
@@ -171,7 +213,7 @@ class BuildingCards
 
   def self.market
     {
-      type: 'theater',
+      type: 'Theater',
       name: 'Market',
       total_pieces: 4,
       point_value: 4,
@@ -183,7 +225,7 @@ class BuildingCards
 
   def self.tailor
     {
-      type: 'theater',
+      type: 'Theater',
       name: 'Tailor',
       total_pieces: 4,
       point_value: 4,
@@ -195,7 +237,7 @@ class BuildingCards
 
   def self.theater
     {
-      type: 'theater',
+      type: 'Theater',
       name: 'Theater',
       total_pieces: 4,
       point_value: 4,
@@ -209,7 +251,7 @@ class BuildingCards
 
   def self.farm
     {
-      type: 'farm',
+      type: 'Farm',
       name: 'Farm',
       total_pieces: 4,
       point_value: 4,
@@ -221,7 +263,7 @@ class BuildingCards
 
   def self.granary
     {
-      type: 'farm',
+      type: 'Farm',
       name: 'Granary',
       total_pieces: 4,
       point_value: 4,
@@ -233,7 +275,7 @@ class BuildingCards
 
   def self.greenhouse
     {
-      type: 'farm',
+      type: 'Farm',
       name: 'Greenhouse',
       total_pieces: 4,
       point_value: 4,
@@ -245,7 +287,7 @@ class BuildingCards
 
   def self.orchard
     {
-      type: 'farm',
+      type: 'Farm',
       name: 'Orchard',
       total_pieces: 4,
       point_value: 4,
@@ -259,7 +301,7 @@ class BuildingCards
 
   def self.factory
     {
-      type: 'factory',
+      type: 'Factory',
       name: 'Factory',
       total_pieces: 5,
       point_value: 0,
@@ -271,7 +313,7 @@ class BuildingCards
 
   def self.warehouse
     {
-      type: 'factory',
+      type: 'Factory',
       name: 'Warehouse',
       total_pieces: 5,
       point_value: 0,
@@ -283,7 +325,7 @@ class BuildingCards
 
   def self.trading_post
     {
-      type: 'factory',
+      type: 'Factory',
       name: 'Trading Post',
       total_pieces: 5,
       point_value: 0,
@@ -295,7 +337,7 @@ class BuildingCards
 
   def self.bank
     {
-      type: 'factory',
+      type: 'Factory',
       name: 'Bank',
       total_pieces: 5,
       point_value: 0,
@@ -311,7 +353,7 @@ class BuildingCards
 
   def self.well
     {
-      type: 'well',
+      type: 'Well',
       name: 'Well',
       total_pieces: 2,
       point_value: 2,
@@ -323,7 +365,7 @@ class BuildingCards
 
   def self.shed
     {
-      type: 'well',
+      type: 'Well',
       name: 'Shed',
       total_pieces: 2,
       point_value: 2,
@@ -335,7 +377,7 @@ class BuildingCards
 
   def self.millstone
     {
-      type: 'well',
+      type: 'Well',
       name: 'Millstone',
       total_pieces: 2,
       point_value: 2,
@@ -347,7 +389,7 @@ class BuildingCards
 
   def self.fountain
     {
-      type: 'well',
+      type: 'Well',
       name: 'Fountain',
       total_pieces: 2,
       point_value: 2,

@@ -1,9 +1,13 @@
 # frozen_string_literal: true
 
 require_relative 'resources'
+require_relative 'building_shapes'
+
 
 class Grid
   def initialize(size, thing)
+    @resources = Resources.all_resources
+    @shapes = BuildingShapes.new
     @size = size
     @grid = []
     size.times do
@@ -37,31 +41,42 @@ class Grid
     all_locations
   end
 
-  def test_build
-    place_in_grid(Resources.wheat, { row: 0, col: 1 })
-    place_in_grid(Resources.brick, { row: 1, col: 0 })
-    place_in_grid(Resources.glass, { row: 1, col: 1 })
-    #
-    # place_in_grid(Resources.wheat, {row: 0, col:3})
-    # place_in_grid(Resources.brick, {row:1, col: 2})
-    # place_in_grid(Resources.glass, {row:1, col:3})
+  def place_building_shape(shape, start)
+    row = start[0]
+    col = start[1]
+    place_in_grid(@resources[shape.name.to_sym], {row:row, col:col})
+    next_thing = shape.next_directions
+    if next_thing[0].nil?
+      return
+    end
+    next_thing.each do |thing|
+      directions = thing[:direction]
+      next_space = shape.next_place(directions, start)
+      shape = thing[:thing]
+      place_building_shape(shape, next_space)
+    end
+  end
 
-    place_in_grid(Resources.wheat, { row: 0, col: 2 })
-    place_in_grid(Resources.glass, { row: 0, col: 3 })
-    place_in_grid(Resources.brick, { row: 1, col: 3 })
+  def test_build
+    place_building_shape(@shapes.cottage, [1,0])
+
+    place_building_shape(@shapes.farm, [0,2])
+    # place_building_shape(@shapes.cottage.rotate_n_times(3), [1,3])
+
+    place_building_shape(@shapes.chapel, [3,0])
 
     # place_in_grid(Resources.wheat, {row: 2, col:2})
     # place_in_grid(Resources.glass, {row: 3, col:2})
     # place_in_grid(Resources.brick, {row: 3, col:1})
     # place_in_grid(Resources.brick, {row: 3, col:3})
 
-    place_in_grid(Resources.wheat, { row: 3, col: 2 })
-    place_in_grid(Resources.glass, { row: 2, col: 2 })
-    place_in_grid(Resources.brick, { row: 2, col: 3 })
-
-    place_in_grid(Resources.wheat, { row: 3, col: 1 })
-    place_in_grid(Resources.glass, { row: 3, col: 0 })
-    place_in_grid(Resources.brick, { row: 2, col: 0 })
+    # place_in_grid(Resources.wheat, { row: 3, col: 2 })
+    # place_in_grid(Resources.glass, { row: 2, col: 2 })
+    # place_in_grid(Resources.brick, { row: 2, col: 3 })
+    #
+    # place_in_grid(Resources.wheat, { row: 3, col: 1 })
+    # place_in_grid(Resources.glass, { row: 3, col: 0 })
+    # place_in_grid(Resources.brick, { row: 2, col: 0 })
   end
 
   def find_building(building)
