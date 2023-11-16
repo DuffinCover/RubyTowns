@@ -16,8 +16,7 @@ class TownCore
     @temp_grid = @town_grid.clone
     @built_buildings = []
     @buildable = []
-    # @buildings_list = [BuildingCards.cottage, BuildingCards.chapel]
-    @buildings_list = BuildingCards.all_buildings.values
+    @buildings_list = [BuildingCards.cottage, BuildingCards.chapel, BuildingCards.farm, BuildingCards.tavern, BuildingCards.well, BuildingCards.theater, BuildingCards.factory]
     @resources = Resources.all_resources
     @remove_for_building = []
     @currently_building = nil

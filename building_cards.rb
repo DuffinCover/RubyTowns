@@ -45,7 +45,7 @@ class BuildingCards
         Millstone: BuidlingCards.millstone, 
         Shed: BuidlingCards.shed, 
         Well: BuidlingCards.well
-      }
+      },
   
       Cottage: BuildingCards.cottage,
       
@@ -63,7 +63,7 @@ class BuildingCards
       point_value: 3,
       resources_need: %w[brick glass wheat],
       shapes: @shapes.cottage,
-      print: BuidlingColors.cottage('Ctg')
+      print: BuildingColors.cottage('Ctg')
     }
   end
 
@@ -77,7 +77,7 @@ class BuildingCards
       point_value: 4,
       resources_need: %w[brick stone glass],
       shapes: @shapes.abbey,
-      print: BuidlingColors.chapel('Aby')
+      print: BuildingColors.chapel('Aby')
     }
   end
 
@@ -90,7 +90,7 @@ class BuildingCards
       point_value: 4,
       resources_need: %w[stone glass],
       shapes: @shapes.chapel,
-      print: BuidlingColors.chapel('Chp')
+      print: BuildingColors.chapel('Chp')
     }
   end
 
@@ -102,7 +102,7 @@ class BuildingCards
       point_value: 4,
       resources_need: %w[wood brick stone glass],
       shapes: @shapes.chapel,
-      print: BuidlingColors.chapel('Clo')
+      print: BuildingColors.chapel('Clo')
     }
   end
 
@@ -116,7 +116,7 @@ class BuildingCards
       point_value: 4,
       resources_need: %w[stone glass],
       shapes: @shapes.almshouse,
-      print: BuidlingColors.tavern('Alm')
+      print: BuildingColors.tavern('Alm')
     }
   end
 
@@ -128,7 +128,7 @@ class BuildingCards
       point_value: 4,
       resources_need: %w[wood glass],
       shapes: @shapes.feast_hall,
-      print: BuidlingColors.tavern('Fst')
+      print: BuildingColors.tavern('Fst')
     }
   end
 
@@ -140,7 +140,7 @@ class BuildingCards
       point_value: 4,
       resources_need: %w[wheat stone glass],
       shapes: @shapes.inn,
-      print: BuidlingColors.tavern('Inn')
+      print: BuildingColors.tavern('Inn')
     }
   end
 
@@ -152,7 +152,7 @@ class BuildingCards
       point_value: 4,
       resources_need: %w[brick glass],
       shapes: @shapes.tavern,
-      print: BuidlingColors.tavern('Tvn')
+      print: BuildingColors.tavern('Tvn')
     }
   end
 
@@ -166,7 +166,7 @@ class BuildingCards
       point_value: 4,
       resources_need: %w[brick glass wheat],
       shapes: @shapes.bakery,
-      print: BuidlingColors.theater('Bkr')
+      print: BuildingColors.theater('Bkr')
     }
   end
 
@@ -178,7 +178,7 @@ class BuildingCards
       point_value: 4,
       resources_need: %w[wood glass stone],
       shapes: @shapes.market,
-      print: BuidlingColors.theater('Mkt')
+      print: BuildingColors.theater('Mkt')
     }
   end
 
@@ -190,7 +190,7 @@ class BuildingCards
       point_value: 4,
       resources_need: %w[wheat glass stone],
       shapes: @shapes.tailor,
-      print: BuidlingColors.theater('Tlr')
+      print: BuildingColors.theater('Tlr')
     }
   end
 
@@ -202,7 +202,7 @@ class BuildingCards
       point_value: 4,
       resources_need: %w[stone glass wood],
       shapes: @shapes.theater,
-      print: BuidlingColors.theater('Thr')
+      print: BuildingColors.theater('Thr')
     }
   end
 
@@ -216,7 +216,7 @@ class BuildingCards
       point_value: 4, 
       resources_need: %w[wheat wood],
       shapes: @shapes.farm, 
-      print: BuidlingColors.farm('Frm')
+      print: BuildingColors.farm('Frm')
     }
   end
 
@@ -228,7 +228,7 @@ class BuildingCards
       point_value: 4, 
       resources_need: %w[wheat wood brick],
       shapes: @shapes.granary, 
-      print: BuidlingColors.farm('Gny')
+      print: BuildingColors.farm('Gny')
     }
   end
 
@@ -240,7 +240,7 @@ class BuildingCards
       point_value: 4, 
       resources_need: %w[wheat glass wood wood],
       shapes: @shapes.greenhouse, 
-      print: BuidlingColors.farm('Grn')
+      print: BuildingColors.farm('Grn')
     }
   end
 
@@ -252,7 +252,7 @@ class BuildingCards
       point_value: 4, 
       resources_need: %w[stone wheat wood],
       shapes: @shapes.orchard, 
-      print: BuidlingColors.farm('Orc')
+      print: BuildingColors.farm('Orc')
     }
   end
   
@@ -265,8 +265,8 @@ class BuildingCards
     total_pieces: 5, 
     point_value: 0, 
     resources_need: %w[wood brick stone], 
-    shapes: @shape.factory, 
-    print: BuidlingColors.factory('Fct')
+    shapes: @shapes.factory, 
+    print: BuildingColors.factory('Fct')
   }
   end
   
@@ -277,8 +277,8 @@ class BuildingCards
       total_pieces: 5, 
       point_value: 0, 
       resources_need: %w[brick wheat wood], 
-      shapes: @shape.warehouse, 
-      print: BuidlingColors.factory('Wrh')
+      shapes: @shapes.warehouse, 
+      print: BuildingColors.factory('Wrh')
     }
   end
 
@@ -289,8 +289,8 @@ class BuildingCards
       total_pieces: 5, 
       point_value: 0, 
       resources_need: %w[wood stone brick], 
-      shapes: @shape.trading_post, 
-      print: BuidlingColors.factory('Trd')
+      shapes: @shapes.trading_post, 
+      print: BuildingColors.factory('Trd')
     }
   end
 
@@ -301,8 +301,8 @@ class BuildingCards
       total_pieces: 5, 
       point_value: 0, 
       resources_need: %w[wheat wood glass brick], 
-      shapes: @shape.bank, 
-      print: BuidlingColors.factory('Bnk')
+      shapes: @shapes.bank, 
+      print: BuildingColors.factory('Bnk')
     }
   end
 
@@ -318,7 +318,7 @@ class BuildingCards
       point_value: 2, 
       resources_need: %w[wood stone],
       shapes: @shapes.well,
-      print: BuidlingColors.well('Wel'),
+      print: BuildingColors.well('Wel'),
     }
   end
 
@@ -330,7 +330,7 @@ class BuildingCards
       point_value: 2, 
       resources_need: %w[wood stone],
       shapes: @shapes.well,
-      print: BuidlingColors.well('Shd'),
+      print: BuildingColors.well('Shd'),
     }
   end
 
@@ -342,25 +342,25 @@ class BuildingCards
       point_value: 2, 
       resources_need: %w[wood stone],
       shapes: @shapes.well,
-      print: BuidlingColors.well('Mls'),
+      print: BuildingColors.well('Mls'),
     }
   end
 
   def self.fountain
     {
       type: 'well',
-      name: 'Fountain'
+      name: 'Fountain',
       total_pieces: 2, 
       point_value: 2, 
       resources_need: %w[wood stone],
       shapes: @shapes.well,
-      print: BuidlingColors.well('Ftn'),
+      print: BuildingColors.well('Ftn'),
     }
   end
 
 end
 
-class BuidlingColors
+class BuildingColors
 
 
   def self.chapel(abv)

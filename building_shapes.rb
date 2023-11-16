@@ -59,7 +59,7 @@ class BuildingShapes
   #--------------------Farm---------------------
 
   def farm
-    assemble_farm(wheat, wheat, wood, wood)
+    assemble_farm([wheat, wheat, wood, wood])
   end
 
   def orchard
@@ -139,7 +139,7 @@ class BuildingShapes
   def assemble_well(mats)
     mats[0].add_right(mats[1])
     mats[0]
-
+  end
   #--------------------Factory------------------
   def factory
     wd = wood
@@ -183,7 +183,7 @@ class BuildingShapes
     mats[0]
   end
 
- 
+
 end
 
 class Shape
