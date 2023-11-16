@@ -14,6 +14,7 @@ class TownCore
     # @town_grid = StartingPoint.cottage_build
     @town_grid = Grid.new(4, Resources.empty)
     @town_grid.test_build
+    @temp_grid = @town_grid.clone
     @built_buildings = []
     @buildable = []
     @buildings_list = [BuildingCards.cottage, BuildingCards.chapel]
@@ -32,7 +33,7 @@ class TownCore
     row_num = 1
     @town_grid.grid.each do |row|
       line = "#{row_num}" + ' | '.colorize(:green)
-      row.each do |square|      
+      row.each do |square|
         line += square.contents[:print] + ' | '.colorize(:green)
       end
       row_num += 1
@@ -52,7 +53,7 @@ class TownCore
     @buildings_list.append(building_Card)
   end
 
-  def place(resource, location)  
+  def place(resource, location)
     @town_grid.place_in_grid(resource, location)
     show_grid
   end
@@ -68,58 +69,55 @@ class TownCore
     choices = []
     find_all_buildable_buildings
     @buildable.each do |building|
-        human_locale = []
-        building.build_spots.each do |spot|
-            coord = []
-            coord[0] = spot[0] +1
-            coord[1] = spot[1] +1
-            human_locale << coord
-        end
-        choice = building.name+" #{building.number}" + " #{human_locale}"
-        choices << choice
+      human_locale = []
+      building.build_spots.each do |spot|
+        coord = []
+        coord[0] = spot[0] + 1
+        coord[1] = spot[1] + 1
+        human_locale << coord
+      end
+      choice = building.name + " #{building.number}" + " #{human_locale}"
+      choices << choice
     end
     choices
   end
-
 
   def find_all_buildable_buildings
     @buildable = []
     total_options = 0
     @buildings_list.each do |building|
       resource_locations = locate_resources_for_building(building)
-      shape_list = building[:shapes]
 
-      shape_list.each do |direction, thing|
-        thing.rotate(1)
-        resource_locations[thing.name].each do |start|
-            valid_build = Set.new 
-            check_neighbors(thing, start, resource_locations, valid_build)
-            if valid_build.size == building[:total_pieces]
-                total_options = total_options +1
-                @buildable << Building.new(building[:name], valid_build.to_a, total_options)
-            end
-        end
+      shape = building[:shapes]
+      4.times do
+        resource_locations[shape.name].each do |start|
+          valid_build = Set.new
+
+          check_neighbors(shape, start, resource_locations, valid_build)
+
+          if valid_build.size == building[:total_pieces]
+            total_options += 1
+            @buildable << Building.new(building[:name], valid_build.to_a, total_options)
+          end
+        end        
+        shape = shape.rotate
       end
     end
   end
 
-
   def check_neighbors(resource, start, coords, valid_build)
     valid_build << start
     next_direction = resource.next_directions
-    if next_direction[0].nil?
-        return
-    end
-    next_direction.each do |direction|        
-        next_coord = resource.next_place(direction[:direction], start)
-        if coords[direction[:thing].name].include? next_coord
-            check_neighbors(direction[:thing], next_coord, coords, valid_build)          
-        end
+    return if next_direction[0].nil?
+
+    next_direction.each do |direction|
+      next_coord = resource.next_place(direction[:direction], start)
+      if coords[direction[:thing].name].include? next_coord
+        check_neighbors(direction[:thing], next_coord, coords, valid_build)
+      end
     end
     valid_build
   end
-
-
 
   def locate_resources_for_building(building)
     resource_locations = {}
@@ -133,54 +131,50 @@ class TownCore
   def highlight_choice(selection)
     number = selection.split(' ')[1].to_i
     @buildable.each do |build|
-        if build.number == number
-            @currently_building = build
-            choices = []
-            build.build_spots.each do |coord|
-                row = coord[0]
-                col = coord[1]
-                @remove_for_building << @town_grid.grid[row][col]
-                @town_grid.reset_square(row, col)
-                @town_grid.place_in_grid(BuidlingColors.all_buildings[build.name.to_sym], {row: row, col:col})
-                choices << "#{[coord[0]+1, coord[1]+1]}"
-            end
-            return choices 
-        end
-    end
-end
+      next unless build.number == number
 
-def place_building(coords)
+      @currently_building = build
+      choices = []
+      build.build_spots.each do |coord|
+        row = coord[0]
+        col = coord[1]
+        @remove_for_building << @town_grid.grid[row][col]
+        @town_grid.reset_square(row, col)
+        @town_grid.place_in_grid(BuidlingColors.all_buildings[build.name.to_sym], { row: row, col: col })
+        choices << "#{[coord[0] + 1, coord[1] + 1]}"
+      end
+      return choices
+    end
+  end
+
+  def place_building(coords)
     row_col = coords.split('')
-    row = row_col[1].to_i-1
-    col = row_col[4].to_i-1
+    row = row_col[1].to_i - 1
+    col = row_col[4].to_i - 1
     chosen_spot = [row, col]
     places_to_build = @currently_building.build_spots
-    if places_to_build.include? chosen_spot
-        places_to_build.delete(chosen_spot)
-        places_to_build.each do |place|
-            @town_grid.reset_square(place[0], place[1])
-        end
+    return unless places_to_build.include? chosen_spot
+
+    places_to_build.delete(chosen_spot)
+    places_to_build.each do |place|
+      @town_grid.reset_square(place[0], place[1])
     end
-end
+  end
 
-
-def changed_mind
+  def changed_mind
     @remove_for_building.each do |square|
-        
-        row = square.row
-        col = square.col
-        @town_grid.reset_square(row, col)
-        @town_grid.grid[row][col] = square
+      row = square.row
+      col = square.col
+      @town_grid.reset_square(row, col)
+      @town_grid.grid[row][col] = square
     end
-end
-
+  end
 
   def generate_town_string
     town_string = ''
     @town_grid.grid.each do |row|
-      row.each do |piece|      
+      row.each do |piece|
         town_string << piece.contents[:piece]
-
       end
     end
     town_string
@@ -188,12 +182,10 @@ end
 end
 
 class Building
-
-    def initialize(name, build_spot, number)
-        @name = name
-        @build_spots = build_spot
-        @number = number
-    end
-    attr_accessor :name, :build_spots, :number
-
+  def initialize(name, build_spot, number)
+    @name = name
+    @build_spots = build_spot
+    @number = number
+  end
+  attr_accessor :name, :build_spots, :number
 end

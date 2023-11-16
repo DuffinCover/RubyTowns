@@ -16,12 +16,14 @@ class GameMenu
     @town.show_grid
     prompt = prompt_instance
     choices = @town.resources
+    choices << 'go back'
     resource = prompt.select('Which Resource?', choices)
     location_menu(resource)
   end
 
   def location_menu(choice)
     @town.show_grid
+    go_back(choice)
     prompt = prompt_instance
     location = prompt.collect do
       key(:row).ask('Row? (1-4)')
@@ -48,14 +50,16 @@ class GameMenu
     prompt = prompt_instance
     if choices == []
       prompt.select('nothing to build!') do |menu|
-        menu.choice 'Return to main menu', -> {default_menu}
+        menu.choice 'Return to main menu', -> { default_menu }
       end
     end
+    choices << 'go back'
     selection = prompt.select('You can build:', choices)
     choosen_building_menu(selection)
   end
 
   def choosen_building_menu(selection)
+    go_back(selection)
     choices = @town.highlight_choice(selection)
     @town.show_grid
     choices << 'go back'
@@ -77,6 +81,12 @@ class GameMenu
   def reset_grid
     @town.reset_grid
     default_menu
+  end
+
+  def go_back(choice)
+    if choice == 'go back'
+      default_menu
+    end
   end
 end
 
