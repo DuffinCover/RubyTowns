@@ -15,6 +15,17 @@ class BuildingCards
     }
   end
   
+  def self.abbey
+    {
+      type: 'church',
+      name: 'Abbey',
+      total_pieces: 4,
+      point_value: 4,
+      resources_need: %w[brick stone glass],
+      shapes: @shapes.abbey,
+      print: BuidlingColors.chapel('Aby')
+    }
+  end
 
   def self.bakery
     {
@@ -62,11 +73,6 @@ end
 
 class BuidlingColors
 
-  def self.bakery
-    {
-
-    }
-  end
 
   def self.chapel(abv)
      Rainbow(abv).black.bg(:orange)
@@ -74,5 +80,25 @@ class BuidlingColors
 
   def self.cottage(abv)
       Rainbow(abv).black.bg(:aquamarine)
+  end
+
+  def self.farm(abv)
+    Rainbow(abv).black.bg(:red)
+  end
+
+  def self.well(abv)
+    Rainbow(abv).black.bg(:lightgray)
+  end
+
+  def self.factory(abv)
+    Rainbow(abv).white.bg(:black)
+  end
+
+  def self.theater(abv)
+    Rainbow(abv).black.bg(:goldenrod)
+  end
+
+  def self.tavern(abv)
+    Rainbow(abv).white.bg(:darkgreen)
   end
 end
