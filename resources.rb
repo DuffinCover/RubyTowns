@@ -17,7 +17,6 @@ class Resources
     {
       name: 'wood',
       print: Rainbow('Wo ').black.bg(:saddlebrown),
-      piece: 'w'
     }
   end
 
@@ -25,7 +24,6 @@ class Resources
     {
       name: 'wheat',
       print: Rainbow('Wh ').black.bg(:goldenrod),
-      piece: 't'
     }
   end
 
@@ -33,7 +31,6 @@ class Resources
     {
       name: 'brick',
       print: Rainbow('Br ').black.bg(:orangered),
-      piece: 'b'
     }
   end
 
@@ -41,7 +38,6 @@ class Resources
     {
       name: 'glass',
       print: Rainbow('Gl ').black.bg(:darkturquoise),
-      piece: 'g'
     }
   end
 
@@ -49,7 +45,6 @@ class Resources
     {
       name: 'stone',
       print: Rainbow('St ').black.bg(:darkgray),
-      piece: 's'
     }
   end
 
@@ -57,32 +52,8 @@ class Resources
     {
       name: 'empty',
       print: ColorizedString['   '].colorize('cyan'.to_sym),
-      piece: 'x'
     }
   end
 end
 
-class BuidlingColors
-  def self.all_buildings
-    {
-      Cottage: BuidlingColors.cottage,
-      Chapel: BuidlingColors.chapel
-    }
-  end
 
-  def self.cottage
-    {
-      name: 'Cottage',
-      print: Rainbow('Ctg').black.bg(:aquamarine),
-      piecs: 'Ctg'
-    }
-  end
-
-  def self.chapel
-    {
-      name: 'Chapel',
-      print: Rainbow('Chp').black.bg(:orange),
-      piecs: 'Chp'
-    }
-  end
-end

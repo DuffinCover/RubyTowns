@@ -87,8 +87,10 @@ class TownCore
     total_options = 0
     @buildings_list.each do |building|
       resource_locations = locate_resources_for_building(building)
-
       shape = building[:shapes]
+      if resource_locations[shape.name].nil?
+        next
+      end
       4.times do
         resource_locations[shape.name].each do |start|
           valid_build = Set.new
@@ -140,7 +142,7 @@ class TownCore
         col = coord[1]
         @remove_for_building << @town_grid.grid[row][col]
         @town_grid.reset_square(row, col)
-        @town_grid.place_in_grid(BuidlingColors.all_buildings[build.name.to_sym], { row: row, col: col })
+        @town_grid.place_in_grid(BuildingCards.all_buildings[build.name.to_sym], { row: row, col: col })
         choices << "#{[coord[0] + 1, coord[1] + 1]}"
       end
       return choices

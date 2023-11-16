@@ -19,26 +19,20 @@ class BuildingShapes
     Shape.new('stone')
   end
 
-  def normal_cottage
+  def abbey
     br = brick
+    st1 = stone
+    st2 = stone
     gl = glass
-    wh = wheat
-    br.add_right(gl)
-    gl.add_up(wh)
+
+    br.add_right(st1)
+    st1.add_right(st2)
+    st2.add_up(gl)
     br
   end
 
-  def cottage_right
-    br = brick
-    gl = glass
-    wh = wheat
-
-    br.add_down(gl)
-    gl.add_right(wh)
-    br
-  end
-
-  def chapel
+  
+  def bakery
     br1 = brick
     br2 = brick
     gl = glass
@@ -49,6 +43,40 @@ class BuildingShapes
     gl.add_left(br2)
     wh
   end
+
+  def chapel
+    st1 = stone
+    gl1 = glass
+    st2 = stone
+    gl2 = glass
+    st1.add_right(gl1)
+    gl1.add_right(st2)
+    st2.add_up(gl2)
+    st1
+  end
+
+  def cloister
+    wd = wood
+    br = brick
+    st = stone
+    gl = glass
+
+    wd.add_right(br)
+    br.add_right(st)
+    st.add_up(gl)
+    wd
+
+  end
+
+  def cottage
+    br = brick
+    gl = glass
+    wh = wheat
+    br.add_right(gl)
+    gl.add_up(wh)
+    br
+  end
+
 end
 
 class Shape
