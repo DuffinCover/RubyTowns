@@ -85,21 +85,43 @@ class Shape
 
     def rotate(times)
         temp_shape = self.clone
-        binding.pry
+        recursive_rotate(temp_shape)
         # literaly just recurse the same way you follow the shape
         # update the direction via case?
+    end
+
+    def recursive_rotate(shape)
+        next_direction = shape.next_directions
+        if next_direction[0].nil?
+            return
+        end
+        next_direction.each do |direction|
+            next_shape = direction[:thing]
+            rotate_direction(direction[:direction], shape)
+            recursive_rotate(next_shape)
+        end
+        binding.pry
+        shape
     end
 
     def rotate_direction(direction, shape)
         case direction
         when 'up'
             # up -> right
+            shape.right[:thing] = shape.up[:thing]
+            shape.up[:thing] = nil
         when 'down'
             # down -> left
+            shape.left[:thing] = shape.down[:thing]
+            shape.down[:thing] = nil
         when 'left'
             # left -> up
+            shape.up[:thing] = shape.left[:thing]
+            shape.left[:thing] = nil
         when 'right'
             # right -> down
+            shape.down[:thing] = shape.right[:thing]
+            shape.right[:thing] = nil
         else
             puts 'you shouldnt be here'
         end

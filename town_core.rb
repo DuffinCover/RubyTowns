@@ -89,8 +89,8 @@ class TownCore
       resource_locations = locate_resources_for_building(building)
       shape_list = building[:shapes]
 
-      shape_list.each do |direction, thing| 
-        thing.rotate(1) 
+      shape_list.each do |direction, thing|
+        thing.rotate(1)
         resource_locations[thing.name].each do |start|
             valid_build = Set.new 
             check_neighbors(thing, start, resource_locations, valid_build)
