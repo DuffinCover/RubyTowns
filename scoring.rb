@@ -42,7 +42,6 @@ class Scoring
                 @total_score = @total_score + cot.contents[:point_value] 
             end
         end
-        binding.pry
     end
 
     def farm(cottages)

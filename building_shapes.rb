@@ -238,7 +238,6 @@ class Shape
       rotate_direction(direction[:direction], shape)
       recursive_rotate(next_shape)
     end
-    # binding.pry
     shape
   end
 

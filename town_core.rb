@@ -16,7 +16,7 @@ class TownCore
   def initialize
     @town_grid = Grid.new(4, Resources.empty)
     @town_grid.test_build
-    @temp_grid = @town_grid.clone
+    # @temp_grid = @town_grid.clone
     @built_buildings = []
     @buildable = []
     @buildings_list = [BuildingCards.cottage, BuildingCards.chapel, BuildingCards.farm, BuildingCards.tavern,
