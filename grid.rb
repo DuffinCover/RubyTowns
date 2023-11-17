@@ -6,6 +6,7 @@ require_relative 'building_shapes'
 
 class Grid
   def initialize(size, thing)
+
     @resources = Resources.all_resources
     @shapes = BuildingShapes.new
     @size = size
@@ -64,24 +65,10 @@ class Grid
     # place_building_shape(@shapes.cottage.rotate_n_times(3), [1,3])
 
     place_building_shape(@shapes.chapel, [3,0])
-
-    # place_in_grid(Resources.wheat, {row: 2, col:2})
-    # place_in_grid(Resources.glass, {row: 3, col:2})
-    # place_in_grid(Resources.brick, {row: 3, col:1})
-    # place_in_grid(Resources.brick, {row: 3, col:3})
-
-    # place_in_grid(Resources.wheat, { row: 3, col: 2 })
-    # place_in_grid(Resources.glass, { row: 2, col: 2 })
-    # place_in_grid(Resources.brick, { row: 2, col: 3 })
-    #
-    # place_in_grid(Resources.wheat, { row: 3, col: 1 })
-    # place_in_grid(Resources.glass, { row: 3, col: 0 })
-    # place_in_grid(Resources.brick, { row: 2, col: 0 })
   end
 
-  def find_building(building)
-    building[:resources_need]
-  end
+  #-----------------------Scoring------------------------------------
+
 end
 
 class Square

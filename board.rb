@@ -116,8 +116,7 @@ class GameMenu
   end
 
   def score
-    @town.town_grid
-    binding.pry
+    @town.score
   end
 
   def reset_grid

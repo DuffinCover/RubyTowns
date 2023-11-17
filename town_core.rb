@@ -9,6 +9,7 @@ require_relative 'easy_starting_point'
 require_relative 'grid'
 require_relative 'building_shapes'
 require 'set'
+require_relative 'scoring'
 
 
 class TownCore
@@ -179,6 +180,12 @@ class TownCore
     row = location[:row]
     col = location[:col]
     @town_grid.reset_square(row, col)
+  end
+
+  def score
+    score = Scoring.new(@town_grid.grid, @buildings_list)
+    score.calculate_score
+
   end
 end
 

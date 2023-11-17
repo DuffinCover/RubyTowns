@@ -36,6 +36,7 @@ class BuildingCards
       Cottage: BuildingCards.cottage
     }
   end
+
   def self.all_buildings_by_cat
     {
       Church: {
@@ -116,7 +117,7 @@ class BuildingCards
       type: 'Church',
       name: 'Chapel',
       total_pieces: 4,
-      point_value: 4,
+      point_value: 1,
       resources_need: %w[stone glass],
       shapes: @shapes.chapel,
       print: BuildingColors.chapel('Chp')
