@@ -21,7 +21,7 @@ class Scoring
             end
         end
         binding.pry
-        # return total
+        @total_score
     end
 
     def find_on_grid(building)
