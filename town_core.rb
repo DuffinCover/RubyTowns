@@ -14,7 +14,8 @@ require_relative 'scoring'
 class TownCore
   def initialize
     @town_grid = Grid.new(4, Resources.empty)
-    @town_grid.test_build
+    @town_grid.test_scoring_fed
+    # @town_grid.test_build
     # @temp_grid = @town_grid.clone
     @built_buildings = []
     @buildable = []
@@ -182,7 +183,7 @@ class TownCore
   end
 
   def score
-    score = Scoring.new(@town_grid.grid, @buildings_list)
+    score = Scoring.new(@town_grid, @buildings_list)
     score.calculate_score
 
   end

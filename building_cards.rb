@@ -241,7 +241,7 @@ class BuildingCards
       type: 'Theater',
       name: 'Theater',
       total_pieces: 4,
-      point_value: 4,
+      point_value: 1,
       resources_need: %w[stone glass wood],
       shapes: @shapes.theater,
       print: BuildingColors.theater('Thr')
@@ -255,7 +255,7 @@ class BuildingCards
       type: 'Farm',
       name: 'Farm',
       total_pieces: 4,
-      point_value: 4,
+      point_value: 0,
       resources_need: %w[wheat wood],
       shapes: @shapes.farm,
       print: BuildingColors.farm('Frm')
@@ -267,7 +267,7 @@ class BuildingCards
       type: 'Farm',
       name: 'Granary',
       total_pieces: 4,
-      point_value: 4,
+      point_value: 0,
       resources_need: %w[wheat wood brick],
       shapes: @shapes.granary,
       print: BuildingColors.farm('Gny')
@@ -279,7 +279,7 @@ class BuildingCards
       type: 'Farm',
       name: 'Greenhouse',
       total_pieces: 4,
-      point_value: 4,
+      point_value: 0,
       resources_need: %w[wheat glass wood wood],
       shapes: @shapes.greenhouse,
       print: BuildingColors.farm('Grn')
@@ -291,7 +291,7 @@ class BuildingCards
       type: 'Farm',
       name: 'Orchard',
       total_pieces: 4,
-      point_value: 4,
+      point_value: 0,
       resources_need: %w[stone wheat wood],
       shapes: @shapes.orchard,
       print: BuildingColors.farm('Orc')
@@ -357,7 +357,7 @@ class BuildingCards
       type: 'Well',
       name: 'Well',
       total_pieces: 2,
-      point_value: 2,
+      point_value: 1,
       resources_need: %w[wood stone],
       shapes: @shapes.well,
       print: BuildingColors.well('Wel')

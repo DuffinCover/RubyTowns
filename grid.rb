@@ -2,6 +2,7 @@
 
 require_relative 'resources'
 require_relative 'building_shapes'
+require_relative 'building_cards'
 
 
 class Grid
@@ -58,13 +59,62 @@ class Grid
     end
   end
 
+  def place_complete_building(building_card, coords)
+    place_in_grid(building_card, {row: coords[0], col: coords[1]})
+  end
+
+  def get_row(row)
+    @grid[row]
+  end
+
+  def get_col(col)
+    only_col = []
+    @grid.each do |row|
+      only_col << row[col]
+    end
+    only_col
+  end
+
   def test_build
-    place_building_shape(@shapes.cottage, [1,0])
+    
+    # place_building_shape(@shapes.cottage, [1,0])
+    # # place_building_shape(@shapes.cottage, [2,0])
 
-    place_building_shape(@shapes.farm, [0,2])
-    # place_building_shape(@shapes.cottage.rotate_n_times(3), [1,3])
+    # place_building_shape(@shapes.farm, [0,2])
+    # # place_building_shape(@shapes.cottage.rotate_n_times(3), [1,3])
 
-    place_building_shape(@shapes.chapel, [3,0])
+    # place_building_shape(@shapes.chapel, [3,0])
+  end
+
+  def test_scoring_fed
+    place_complete_building(BuildingCards.cottage, [1,0])
+    place_complete_building(BuildingCards.cottage, [2,0])
+    place_complete_building(BuildingCards.cottage, [3,0])
+    place_complete_building(BuildingCards.cottage, [0,0])
+    place_complete_building(BuildingCards.cottage, [0,1])
+
+    place_complete_building(BuildingCards.theater, [2,2])
+    place_complete_building(BuildingCards.theater, [1,2])
+
+    place_complete_building(BuildingCards.tavern, [1,1])
+    place_complete_building(BuildingCards.tavern, [2,1])
+
+    place_complete_building(BuildingCards.farm, [0,3])
+    place_complete_building(BuildingCards.farm, [1,3])
+    place_complete_building(BuildingCards.chapel, [2,3])
+    place_complete_building(BuildingCards.chapel, [3,3])
+  end
+
+  def test_taverns
+    # place_complete_building(BuildingCards.tavern, [1,1])
+    # place_complete_building(BuildingCards.tavern, [2,1])
+    # place_complete_building(BuildingCards.tavern, [3,0])
+    # place_complete_building(BuildingCards.tavern, [0,0])
+    # place_complete_building(BuildingCards.tavern, [0,1])
+  end
+
+  def test_theaters
+
   end
 
   #-----------------------Scoring------------------------------------
