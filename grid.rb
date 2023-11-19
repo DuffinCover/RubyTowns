@@ -75,6 +75,28 @@ class Grid
     only_col
   end
 
+  def get_adjacent(row, col)
+    actual_adj = []
+    adj = [[(row -1),col], [(row +1), col], [row, (col -1)], [row,(col + 1)]]
+    adj = remove_out_of_bounds_spots(adj)
+    adj.each do |spot|
+      actual_adj << @grid[spot[0]][spot[1]]
+    end
+    actual_adj
+  end
+
+  def remove_out_of_bounds_spots(adj)
+    temp = []
+    adj.each do |spot|
+        unless spot[0] < 0 || spot[0] > 4
+          unless spot[1] < 0 || spot[1] > 4
+            temp << spot
+          end
+        end
+    end
+    temp
+  end
+
   def test_build
     
     # place_building_shape(@shapes.cottage, [1,0])
@@ -96,13 +118,15 @@ class Grid
     place_complete_building(BuildingCards.theater, [2,2])
     place_complete_building(BuildingCards.theater, [1,2])
 
-    place_complete_building(BuildingCards.tavern, [1,1])
-    place_complete_building(BuildingCards.tavern, [2,1])
+    # place_complete_building(BuildingCards.tavern, [1,1])
+    # place_complete_building(BuildingCards.tavern, [2,1])
 
     place_complete_building(BuildingCards.farm, [0,3])
     place_complete_building(BuildingCards.farm, [1,3])
     place_complete_building(BuildingCards.chapel, [2,3])
     place_complete_building(BuildingCards.chapel, [3,3])
+
+    place_complete_building(BuildingCards.well,[0,2])
   end
 
   def test_taverns

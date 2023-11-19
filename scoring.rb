@@ -7,7 +7,7 @@ class Scoring
 
         @grid = grid
         @buildings = building_list
-        @score_type_order = ['Farm', 'Cottage', 'Church', 'Tavern', 'Theater']#, 'Well', 'Factory']
+        @score_type_order = ['Farm', 'Cottage', 'Church', 'Tavern', 'Theater', 'Well']#, 'Factory']
     end
 
     def calculate_score
@@ -81,7 +81,7 @@ class Scoring
         all_chapels.each do |chapel|
             cottages.each do |cot|
                 if cot.contents[:scoring]== true
-                    @total_score = @total_score + BuildingCards.chapel[:point_value] 
+                    @total_score = @total_score + chapel.contents[:point_value] 
                 end
             end
         end
@@ -114,5 +114,16 @@ class Scoring
             end
         end
         unique_buildings
+    end
+
+    def well(all_wells)
+        all_wells.each do |well|
+            neighbors = @grid.get_adjacent(well.row, well.col)
+            neighbors.each do |neighbor|
+                if neighbor.contents[:name] == 'cottage'
+                    @total_score = @total_score + well.contents[:point_value] 
+                end
+            end
+        end
     end
 end
