@@ -4,32 +4,57 @@ class Scoring
     attr_accessor :total_score, :grid, :buildings
     def initialize(grid, building_list)
         @total_score = 0
-
         @grid = grid
         @buildings = building_list
         @score_type_order = ['Farm', 'Cottage', 'Church', 'Tavern', 'Theater', 'Well']#, 'Factory']
     end
 
     def calculate_score
+        buildings_by_type = group_all_buildings
         @score_type_order.each do |type|
-            @buildings.each do |building|
-                if building[:type] == type
-                    all_of_that_building = find_on_grid(building)
-                    self.public_send(building[:name].downcase.to_sym, all_of_that_building)                                   
-                end
+            chosen_building = buildings_by_type[type]
+            unless chosen_building.nil?
+                building_name = chosen_building[0].contents[:name]              
+                self.public_send(building_name.downcase.to_sym, chosen_building)  
             end
+          
         end
-        # empty_spaces
-        binding.pry
+        empty_spaces
         @total_score
     end
 
+    def group_all_buildings
+        all_buildings = {}
+        @grid.grid.each do |row|
+            row.each do |col|
+                if all_buildings[col.contents[:type]].nil?
+                    all_buildings[col.contents[:type]] = []
+                end
+                all_buildings[col.contents[:type]] << col
+            end
+        end
+        all_buildings
+    end
+
     def empty_spaces
-        empty = find_on_grid(Resources.empty)
-        empty.each do
-            @total_score = @total_score -1
+        names = all_building_names
+        @grid.grid.each do |row|
+            row.each do |col|
+                unless names.include?(col.contents[:name])
+                    @total_score = @total_score -1
+                end
+            end
         end
     end
+
+    def all_building_names
+        names = []
+        @buildings.each do |building|
+            names << building[:name]
+        end
+        names
+    end
+
 
 
     def find_on_grid(building)
@@ -100,17 +125,22 @@ class Scoring
     end
 
     def theater(all_theaters)
-        all_theaters.each do |theater|
-            row_and_col = @grid.get_row(theater.row).concat(@grid.get_col(theater.col))
-            scoring_set = add_all_unique_building_types(row_and_col)
+        names = all_building_names
+        all_theaters.each do |theater|          
+            row  = @grid.get_row(theater.row)
+            col = @grid.get_col(theater.col)
+            scoring_set  = add_all_unique_building_types([row, col], names)
             @total_score = @total_score + scoring_set.length
         end
     end
-    def add_all_unique_building_types(row_and_col)
-        unique_buildings = Set.new
-        row_and_col.each do |spot|
-            unless spot.contents[:name] == 'empty'
-                unique_buildings << spot.contents[:type]
+    def add_all_unique_building_types(row_and_col, names)
+        unique_buildings = Set.new     
+        row_and_col.each do |row_or_col|
+            row_or_col.each do |spot|
+                binding.pry
+                if names.include? (spot.contents[:name])
+                    unique_buildings << spot.contents[:type]
+                end
             end
         end
         unique_buildings

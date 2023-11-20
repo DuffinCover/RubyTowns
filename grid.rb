@@ -6,7 +6,7 @@ require_relative 'building_cards'
 
 
 class Grid
-  def initialize(size, thing)
+  def initialize(size = 4, thing = Resources.empty)
 
     @resources = Resources.all_resources
     @shapes = BuildingShapes.new

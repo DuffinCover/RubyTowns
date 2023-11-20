@@ -94,7 +94,8 @@ class BuildingCards
       resources_need: %w[brick glass wheat],
       shapes: @shapes.cottage,
       print: BuildingColors.cottage('Ctg'),
-      scoring: false # needs to be fed, might as well make it a bool
+      scoring: false, # needs to be fed, might as well make it a bool
+      rules: 'Worth 3 points if fed.'
     }
   end
 
@@ -120,7 +121,8 @@ class BuildingCards
       point_value: 1,
       resources_need: %w[stone glass],
       shapes: @shapes.chapel,
-      print: BuildingColors.chapel('Chp')
+      print: BuildingColors.chapel('Chp'),
+      rules: '1 point for each fed cottage.'
     }
   end
 
@@ -194,7 +196,8 @@ class BuildingCards
       point_value: 4,
       resources_need: %w[brick glass],
       shapes: @shapes.tavern,
-      print: BuildingColors.tavern('Tvn')
+      print: BuildingColors.tavern('Tvn'),
+      rules: 'Scores based on how many taverns you have constructed up to a max of 5. Points are 2, 5, 9, 14, 20 for 1, 2, 3, 4, 5 taverns respectively.'
     }
   end
 
@@ -244,7 +247,8 @@ class BuildingCards
       point_value: 1,
       resources_need: %w[stone glass wood],
       shapes: @shapes.theater,
-      print: BuildingColors.theater('Thr')
+      print: BuildingColors.theater('Thr'),
+      rules: '1 point for each unique building type that shares a row or column with this. Maximum of 6 points per Theater.'
     }
   end
 
@@ -258,7 +262,8 @@ class BuildingCards
       point_value: 0,
       resources_need: %w[wheat wood],
       shapes: @shapes.farm,
-      print: BuildingColors.farm('Frm')
+      print: BuildingColors.farm('Frm'),
+      rules: 'Feeds four cottages anywhere in your town.'
     }
   end
 
@@ -360,7 +365,8 @@ class BuildingCards
       point_value: 1,
       resources_need: %w[wood stone],
       shapes: @shapes.well,
-      print: BuildingColors.well('Wel')
+      print: BuildingColors.well('Wel'),
+      rules: '1 point per adjacent (up/down/left/right) cottage.'
     }
   end
 
