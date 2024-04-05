@@ -136,8 +136,7 @@ class Scoring
     def add_all_unique_building_types(row_and_col, names)
         unique_buildings = Set.new     
         row_and_col.each do |row_or_col|
-            row_or_col.each do |spot|
-                binding.pry
+            row_or_col.each do |spot|                
                 if names.include? (spot.contents[:name])
                     unique_buildings << spot.contents[:type]
                 end

@@ -2,7 +2,6 @@
 
 require 'colorize'
 require 'colorized_string'
-require 'regex'
 require_relative 'resources'
 require_relative 'building_cards'
 require_relative 'grid'
